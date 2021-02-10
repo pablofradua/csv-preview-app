@@ -1,2 +1,3 @@
-# csv-preview-challenge
-Shell project and instructions for the CSV Preview App Code Challenge
+# CSV Preview App
+
+Shell project for the CSV Preview App challenge.
