@@ -15,6 +15,7 @@
             <groupId>jakarta.platform</groupId>
             <artifactId>jakarta.jakartaee-api</artifactId>
             <version>${dep.jakarta.version}</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.primefaces</groupId>
@@ -33,7 +34,6 @@
             <version>${dep.junit.version}</version>
             <scope>test</scope>
         </dependency>
-
     </dependencies>
 
     <dependencyManagement>
@@ -57,14 +57,32 @@
                     <source>${maven.compiler.source}</source>
                     <target>${maven.compiler.target}</target>
                     <annotationProcessorPaths>
-                        <annotationProcessorPaths>
-                            <path>
-                                <groupId>org.projectlombok</groupId>
-                                <artifactId>lombok</artifactId>
-                                <version>${dep.lombok.version}</version>
-                            </path>
-                        </annotationProcessorPaths>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                            <version>${dep.lombok.version}</version>
+                        </path>
                     </annotationProcessorPaths>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${plugin.maven-surefire-plugin.version}</version>
+                <configuration>
+                    <argLine>
+                        --illegal-access=permit
+                    </argLine>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>${plugin.maven-failsafe-plugin.version}</version>
+                <configuration>
+                    <argLine>
+                        --illegal-access=permit
+                    </argLine>
                 </configuration>
             </plugin>
         </plugins>
@@ -82,6 +100,9 @@
         <dep.junit.version>5.7.1</dep.junit.version>
         <dep.jakarta.version>8.0.0</dep.jakarta.version>
         <dep.primefaces.version>8.0</dep.primefaces.version>
+
+        <plugin.maven-failsafe-plugin.version>2.22.0</plugin.maven-failsafe-plugin.version>
+        <plugin.maven-surefire-plugin.version>2.22.0</plugin.maven-surefire-plugin.version>
     </properties>
 
 </project>
