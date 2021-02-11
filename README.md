@@ -106,5 +106,5 @@ described below.
     * Double Quotes, i.e. `"` (default)
     * Single Quotes, i.e. `'`
 * Encoding
-    * UTF-8 (default)
-    * all available charsets of the system, see Charset.availableCharsets()
+  * UTF-8 (default)
+  * all available charsets of the system, see `Charset.availableCharsets()`
