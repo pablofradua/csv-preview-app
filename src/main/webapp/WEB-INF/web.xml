@@ -5,6 +5,15 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
 
+    <filter>
+        <filter-name>Character Encoding Filter</filter-name>
+        <filter-class>com.exasol.csv.CharacterEncodingFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>Character Encoding Filter</filter-name>
+        <servlet-name>Faces Servlet</servlet-name>
+    </filter-mapping>
+
     <servlet>
         <servlet-name>Faces Servlet</servlet-name>
         <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
@@ -17,11 +26,6 @@
     <context-param>
         <param-name>javax.faces.PROJECT_STAGE</param-name>
         <param-value>Development</param-value>
-    </context-param>
-
-    <context-param>
-        <param-name>javax.faces.CLIENT_WINDOW_MODE</param-name>
-        <param-value>url</param-value>
     </context-param>
 
     <welcome-file-list>
