@@ -19,6 +19,7 @@ described below.
     * Testing with [JUnit](https://junit.org/junit5/) and [Mockito](https://site.mockito.org)
 * You may use third-party libraries if they are publicly licensed and free to use.
 * Think of your code as production-ready code.
+* You may start with this provided shell project to start the challenge.
 * See a [sample CSV file with generated names](doc/names.csv) for testing (generated
   with [convertcsv.com](https://www.convertcsv.com/generate-test-data.htm))
 
@@ -91,12 +92,12 @@ described below.
 ## Configuration Settings
 
 * First row contains column header (Checkbox)
-    * true (default)
-    * false
+  * `true` (default)
+  * `false`
 * Column Separator
-    * Comma (default)
-    * Semicolon
-    * Tabstop
+  * Comma (default)
+  * Semicolon
+  * Tabstop
 * Row Separator
     * `LF` (Default) - Linefeed / corresponds to the ASCII character 0x0a (Unix)
     * `CR` - Corresponds to the ASCII character 0x0d (Macintosh)
