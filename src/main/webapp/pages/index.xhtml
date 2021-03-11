@@ -13,10 +13,13 @@
 
 <h:body>
     <h1>Test Page</h1>
-    <p>
-        <h:outputText value="#{greetingModel.greeting}"/>
-    </p>
+    <ul>
+        <li>Value from Backing Bean: <h:outputText value="#{greetingModel.greeting}"/></li>
+        <li><h:link value="Data Table Example" outcome="table"/></li>
 
+    </ul>
+
+    <h1>Lifecycle</h1>
     <p:lifecycle/>
 
 </h:body>
