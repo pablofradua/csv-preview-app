@@ -31,8 +31,10 @@ described below.
 
 ### User Action 1: Start / first visit
 
-* The controls of Step 2 in the left panel are disabled.
-* The table, the searchbar and the header ("Displaying file: ...") are not displayed.
+* The controls of "Step 2" in the left panel are disabled.
+* The searchbar is disabled.
+* The header "Display file: ..." shows "No file selected".
+* The data table is disabled.
 * It's only possible to select a file which should be uploaded (proceed with User Action 2).
 * The upload starts by clicking the "Upload" button.
 
@@ -93,7 +95,7 @@ described below.
 * All updates to the page should be done without a page refresh, i.e. by AJAX based updates.
 * A page refresh will reset the application, and the user has to start with User Action 1.
 * Only JSF / PrimeFaces default components should be used.
-* The layout should be responsive by using PrimeFlex (FlexGrid CSS).
+* The layout should be responsive by using PrimeFlex (see table.xhtml).
 
 ## Configuration Settings
 
