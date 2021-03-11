@@ -32,7 +32,7 @@ described below.
 ### User Action 1: Start / first visit
 
 * The controls of Step 2 in the left panel are disabled.
-* The table, the search bar and the header are not displayed.
+* The table, the searchbar and the header ("Displaying file: ...") are not displayed.
 * It's only possible to select a file which should be uploaded (proceed with User Action 2).
 * The upload starts by clicking the "Upload" button.
 
@@ -42,7 +42,8 @@ described below.
 * After the upload was successful the input controls of Step 2 in the left panel are enabled.
 * Also, the application tries to display the data of the CSV file in the table by using the default settings (see below)
   .
-* If the first row of the CSV file contains the column names (default settings) the column names should be displayed.
+* If the first row of the CSV file contains the column names (default settings) the column names should be displayed in
+  the table.
 * If the file does not contain column names the columns should be named Column 1, Column2, Column 3, etc.
 * If the data of the file cannot be parsed or displayed, an error message should be displayed in a small dialog.
 
@@ -55,9 +56,9 @@ described below.
 ### User Action 4: Upload a new file
 
 * If the user uploads a new file all configured settings in the left panel are kept.
-* After the upload was successful and the contents of the file are readable the table is refreshed, i.e. the contents of
-  the new file are displayed.
-* If the upload fails or the contents of the file are not readable an error message should be displayed in a small
+* After the upload was successful, and the contents of the file are readable the table is refreshed, i.e. the contents
+  of the new file are displayed.
+* If the upload fails, or the contents of the file are not readable an error message should be displayed in a small
   dialog. Also, the old state of the application is kept so that the user can still browse the data of the previous
   file.
 
@@ -73,6 +74,11 @@ described below.
 
 ## Technical Remarks
 
+### Parsing of CSV files
+
+* CSV parsing should be done using a third party library
+  like [Apache Commons CSV](https://commons.apache.org/proper/commons-csv/).
+
 ### Data Table / Data Preview
 
 * The Data Table should use the full width and height available.
@@ -85,7 +91,7 @@ described below.
 ### Application
 
 * All updates to the page should be done without a page refresh, i.e. by AJAX based updates.
-* A page refresh will reset the application and the user has to start with User Action 1.
+* A page refresh will reset the application, and the user has to start with User Action 1.
 * Only JSF / PrimeFaces default components should be used.
 * The layout should be responsive by using PrimeFlex (FlexGrid CSS).
 
