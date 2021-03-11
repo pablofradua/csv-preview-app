@@ -5,22 +5,12 @@ import org.junit.jupiter.api.Test;
 import java.nio.charset.Charset;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class TestModelGreeting {
-
-    /**
-     * Make sure that JUnit works...
-     */
-    @Test
-    void testGreeting() {
-        final GreetingModel greetingModel = new GreetingModel();
-        assertEquals("Hello World", greetingModel.getGreeting());
-    }
+class CharsetTest {
 
     @Test
-    void utf8ShouldBePresent() {
+    void test_charsetUtf8MustBePresent() {
         final Optional<Charset> optionalUtf8Charset = Charset.availableCharsets()
                 .values()
                 .stream()

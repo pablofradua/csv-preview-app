@@ -33,6 +33,11 @@
         <param-value>nova-light</param-value>
     </context-param>
 
+    <context-param>
+        <param-name>javax.faces.WEBAPP_RESOURCES_DIRECTORY</param-name>
+        <param-value>/WEB-INF/resources</param-value>
+    </context-param>
+
     <welcome-file-list>
         <welcome-file>pages/index.xhtml</welcome-file>
     </welcome-file-list>

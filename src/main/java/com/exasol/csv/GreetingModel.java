@@ -5,7 +5,7 @@ import lombok.Getter;
 import javax.enterprise.inject.Model;
 
 /**
- * Simple Hello World backing bean
+ * Simple Hello World Model
  */
 @Model
 public class GreetingModel {
