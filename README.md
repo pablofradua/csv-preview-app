@@ -14,7 +14,7 @@ described below.
     * Container: [Payara Server](https://www.payara.fish)
     * Framework: [Jakarta EE](https://jakarta.ee) 8.0.0
     * Front End: [Jakarta Server Faces](https://jakarta.ee/specifications/faces/)
-      with [PrimeFaces 8.0](https://www.primefaces.org)
+      with [PrimeFaces 10.0.0](https://www.primefaces.org)
     * Theme: provided default theme of PrimeFaces (saga)
     * Testing with [JUnit](https://junit.org/junit5/) and [Mockito](https://site.mockito.org)
 * You may use third-party libraries if they are publicly licensed and free to use.

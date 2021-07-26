@@ -3,9 +3,25 @@
 }
 
 .sidebar {
-    width: 400px;
+    width: 300px;
 }
 
 .full-height {
     height: 100%;
+}
+
+.ui-datatable {
+    height: 100%;
+}
+
+.ui-datatable .ui-datatable-header {
+    display: none;
+}
+
+.ui-datatable-scrollable-header-box {
+    margin-right: 0 !important;
+}
+
+.ui-datatable .ui-datatable-scrollable-body {
+    overflow-y: scroll;
 }

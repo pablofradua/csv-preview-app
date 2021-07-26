@@ -105,7 +105,7 @@
         <dep.lombok.version>1.18.16</dep.lombok.version>
         <dep.junit.version>5.7.1</dep.junit.version>
         <dep.jakarta.version>8.0.0</dep.jakarta.version>
-        <dep.primefaces.version>8.0</dep.primefaces.version>
+        <dep.primefaces.version>10.0.0</dep.primefaces.version>
 
         <plugin.maven-failsafe-plugin.version>2.22.0</plugin.maven-failsafe-plugin.version>
         <plugin.maven-surefire-plugin.version>2.22.0</plugin.maven-surefire-plugin.version>
