@@ -25,3 +25,8 @@
 .ui-datatable .ui-datatable-scrollable-body {
     overflow-y: scroll;
 }
+
+.csv-preview-table {
+	min-height: 500px;
+	min-width: 500px;
+}
