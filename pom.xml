@@ -44,6 +44,13 @@
 		  <groupId>org.mockito</groupId>
 		  <artifactId>mockito-core</artifactId>
 		  <version>${dep.mockito-core.version}</version>
+		  <scope>test</scope>
+		</dependency>
+        <dependency>
+		  <groupId>org.mockito</groupId>
+		  <artifactId>mockito-junit-jupiter</artifactId>
+		  <version>${dep.mockito-junit-jupiter.version}</version>
+		  <scope>test</scope>
 		</dependency>
     </dependencies>
 
@@ -116,6 +123,7 @@
         <plugin.maven-surefire-plugin.version>2.22.0</plugin.maven-surefire-plugin.version>
         <dep.assertj-core.version>3.18.1</dep.assertj-core.version>
         <dep.mockito-core.version>3.11.2</dep.mockito-core.version>
+        <dep.mockito-junit-jupiter.version>3.11.2</dep.mockito-junit-jupiter.version>
     </properties>
 
 </project>
