@@ -5,7 +5,8 @@
       xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
 
 <h:head>
     <title>Data Table Test</title>
@@ -16,40 +17,50 @@
 
 <h:body>
     <div class="p-grid p-align-stretch vertical-container content">
-        <div class="p-col-fixed full-height">
-            <div class="full-height sidebar">
-                <p:card id="control-card">
-                    <f:facet name="title">
-                        Upload
-                    </f:facet>
-                    <div class="ui-fluid">
-                        <div class="p-field">
-                            <label for="@next">Column Separator</label>
-                            <p:selectOneMenu id="column-separator">
-                                <f:selectItem itemLabel="Comma" itemValue="comma"/>
-                                <f:selectItem itemLabel="Semicolon" itemValue="semicolon"/>
-                                <f:selectItem itemLabel="Tabstop" itemValue="tabstop"/>
-                            </p:selectOneMenu>
-                        </div>
-                    </div>
-                </p:card>
-            </div>
-        </div>
-        <div class="p-col full-height">
-            <h:form id="table-form" styleClass="full-height">
-                <p:dataTable id="table"
-                             var="fileRow"
-                             value="#{fileDataPanel.fileRows}"
-                             scrollable="true"
-                             scrollHeight="100%"
-                             styleClass="csv-preview-table">
-					<p:columns value="#{fileDataPanel.columnNames}"  var="columnName" columnIndexVar="colIndex">  
-					  <f:facet name="header">#{columnName}</f:facet>
-					  <h:outputText value="#{fileRow[colIndex]}" />
-					</p:columns>
-                </p:dataTable>
-            </h:form>
-        </div>
+        <h:form id="table-form" styleClass="full-height" enctype="multipart/form-data">
+	        <div class="p-col-fixed full-height">
+	            <div class="full-height sidebar">
+	                <p:card id="control-card">
+	                    <f:facet name="title">
+	                        File
+	                    </f:facet>
+	                    <div class="ui-fluid">
+	                        <div class="p-field">
+	                            <label for="@next">Step 1: Upload a file</label>
+	                            <p:fileUpload accept="text/csv" allowTypes="/(\.|\/)(csv)$/" label="Select file" listener="#{fileUploadListener.handleFileUpload}"
+	                            update="results-section"/>
+	                        </div>
+	                        <div class="p-field">
+	                            <label for="@next">Column Separator</label>
+	                            <p:selectOneMenu id="column-separator">
+	                                <f:selectItem itemLabel="Comma" itemValue="comma"/>
+	                                <f:selectItem itemLabel="Semicolon" itemValue="semicolon"/>
+	                                <f:selectItem itemLabel="Tabstop" itemValue="tabstop"/>
+	                            </p:selectOneMenu>
+	                        </div>
+	                    </div>
+	                </p:card>
+	            </div>
+	        </div>
+	        <div jsf:id="results-section" class="p-col full-height">
+	            	<h:outputFormat value="Displaying file: {0}" rendered="#{not empty fileDataPanel.filename}">
+	            		<f:param value="#{fileDataPanel.filename}"/>
+	            	</h:outputFormat>
+	            	<h:outputText value="No file selected" rendered="#{empty fileDataPanel.filename}"/>
+	                <p:dataTable id="table"
+	                             var="fileRow"
+	                             value="#{fileDataPanel.fileRows}"
+	                             scrollable="true"
+	                             scrollHeight="100%"
+	                             styleClass="csv-preview-table"
+	                             rendered="#{not empty fileDataPanel.filename}">
+						<p:columns value="#{fileDataPanel.columnNames}"  var="columnName" columnIndexVar="colIndex">  
+						  <f:facet name="header">#{columnName}</f:facet>
+						  <h:outputText value="#{fileRow[colIndex]}" />
+						</p:columns>
+	                </p:dataTable>
+	        </div>
+        </h:form>
     </div>
 </h:body>
 </html>

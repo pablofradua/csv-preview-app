@@ -9,17 +9,28 @@ import java.util.stream.IntStream;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
+import org.primefaces.model.file.UploadedFile;
+
 import lombok.Getter;
+import lombok.Setter;
 
 @ViewScoped
 @Named
 public class FileDataPanel implements Serializable{
 
 	@Getter
+	@Setter
+	private String filename;
+	
+	@Getter
 	private List<String> columnNames;
 
 	@Getter
 	private List<List<String>> fileRows;
+	
+	@Getter
+	@Setter
+	private UploadedFile uploadedFile;
 
 	public FileDataPanel() {
 		this.columnNames = getDummyColumnNames();
