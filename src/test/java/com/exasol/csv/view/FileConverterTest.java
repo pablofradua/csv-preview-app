@@ -28,6 +28,8 @@ class FileConverterTest {
 	
 	private FileConverter fileConverter;
 	
+	private UploadOptions uploadOptions;
+	
 	public FileConverterTest() {
 		this.fileConverter = new FileConverter();
 	}
@@ -43,6 +45,7 @@ class FileConverterTest {
 	@Test
 	void testFileToLists() throws IOException {
 		givenSomeFileUploadInput();
+		givenDefaultOptions();
 		whenExtractingTheFileColumns();
 		expectTheFileColumnsAreExtracted();
 	}
@@ -52,8 +55,12 @@ class FileConverterTest {
 		when(this.uploadedFile.getInputStream()).thenReturn(newInputStream(Paths.get("src", "test", "resources", MY_MOCK_FILE_NAME)));
 	}
 
+	private void givenDefaultOptions() {
+		this.uploadOptions = new UploadOptions();
+	}
+
 	private void whenExtractingTheFileColumns() throws IOException {
-		this.csvFile = this.fileConverter.convert(this.uploadedFile);
+		this.csvFile = this.fileConverter.convert(this.uploadedFile, this.uploadOptions);
 	}
 
 	private void expectTheFileColumnsAreExtracted() throws IOException {

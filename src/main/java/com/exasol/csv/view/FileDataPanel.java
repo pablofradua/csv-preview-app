@@ -22,6 +22,9 @@ public class FileDataPanel implements Serializable{
 	@Setter
 	private UploadedFile uploadedFile;
 	
+	@Getter
+	private UploadOptions uploadOptions;
+	
 	public boolean isFileLoaded() {
 		return this.csvFile!=null;
 	}

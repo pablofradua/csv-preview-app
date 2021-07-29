@@ -16,7 +16,7 @@ public class FileConverter {
 	
 	private static final CSVRecordMapper MAPPER = new CSVRecordMapper();
 
-	public CSVFile convert(UploadedFile uploadedFile) {
+	public CSVFile convert(UploadedFile uploadedFile, UploadOptions uploadOptions) {
 		try (Reader fileReader = new InputStreamReader(uploadedFile.getInputStream())) {
 			CSVParser parser = CSVFormat.EXCEL.parse(fileReader);
 			var allLines = parser.getRecords().stream().map(MAPPER::toList).collect(toList());

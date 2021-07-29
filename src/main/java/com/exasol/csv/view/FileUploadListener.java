@@ -20,7 +20,7 @@ public class FileUploadListener {
 	}
 	
 	public void handleFileUpload(FileUploadEvent fileUploadEvent) {
-		CSVFile csvFile = this.fileConverter.convert(fileUploadEvent.getFile());
-		fileDataPanel.setCsvFile(csvFile);
+		CSVFile csvFile = this.fileConverter.convert(fileUploadEvent.getFile(), this.fileDataPanel.getUploadOptions());
+		this.fileDataPanel.setCsvFile(csvFile);
 	}
 }
