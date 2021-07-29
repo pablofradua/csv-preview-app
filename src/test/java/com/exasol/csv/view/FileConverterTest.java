@@ -10,16 +10,21 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.primefaces.model.file.UploadedFile;
 
+import com.exasol.csv.view.file.ColumnSeparator;
+
 @ExtendWith(MockitoExtension.class)
 class FileConverterTest {
 
-	private static final String MY_MOCK_FILE_NAME = "my_mock_file.csv";
+	private static final String DEFAULT_FILE_NAME = "basic_file.csv";
+	private static final String SEMICOLONS_MOCK_FILE = "semicolons_file.csv";
+	private static final String TABSTOPS_MOCK_FILE = "tabstops_file.csv";
 	private static final List<String> EXPECTED_COLUMN_NAMES = List.of("seq","first","last","age","gender","birthday");
 	private static final List<List<String>> EXPECTED_VALUES = getExpectedValues();
 	
@@ -32,6 +37,7 @@ class FileConverterTest {
 	
 	public FileConverterTest() {
 		this.fileConverter = new FileConverter();
+		this.uploadOptions = new UploadOptions();
 	}
 	
 	private static List<List<String>> getExpectedValues() {
@@ -41,33 +47,72 @@ class FileConverterTest {
 		expectedValues.add(List.of("3","Lily","Oliver","45","Female","2/27/2003"));
 		return expectedValues;
 	}
+	
+	@AfterEach
+	void checkMocksWereCalled() throws IOException {
+		verify(this.uploadedFile).getFileName();
+		verify(this.uploadedFile).getInputStream();
+	}
 
 	@Test
-	void testFileToLists() throws IOException {
+	void testDefaultInputsConverter() throws IOException {
 		givenSomeFileUploadInput();
-		givenDefaultOptions();
 		whenExtractingTheFileColumns();
-		expectTheFileColumnsAreExtracted();
+		expectFilenameIsExtracted();
+		expectColumnNamesAndRowsAreExtracted();
 	}
 
 	private void givenSomeFileUploadInput() throws IOException {
-		when(this.uploadedFile.getFileName()).thenReturn(MY_MOCK_FILE_NAME);
-		when(this.uploadedFile.getInputStream()).thenReturn(newInputStream(Paths.get("src", "test", "resources", MY_MOCK_FILE_NAME)));
+		setupMockFile(DEFAULT_FILE_NAME);
 	}
 
-	private void givenDefaultOptions() {
-		this.uploadOptions = new UploadOptions();
+	private void setupMockFile(String filename) throws IOException {
+		when(this.uploadedFile.getFileName()).thenReturn(filename);
+		when(this.uploadedFile.getInputStream()).thenReturn(newInputStream(Paths.get("src", "test", "resources", filename)));
 	}
 
-	private void whenExtractingTheFileColumns() throws IOException {
+	private void whenExtractingTheFileColumns() {
 		this.csvFile = this.fileConverter.convert(this.uploadedFile, this.uploadOptions);
 	}
 
-	private void expectTheFileColumnsAreExtracted() throws IOException {
-		assertThat(this.csvFile.getFilename()).isEqualTo(MY_MOCK_FILE_NAME);
+	private void expectFilenameIsExtracted() {
+		assertThat(this.csvFile.getFilename()).isEqualTo(DEFAULT_FILE_NAME);
+	}
+
+	private void expectColumnNamesAndRowsAreExtracted(){
 		assertThat(this.csvFile.getColumnNames()).containsExactlyInAnyOrderElementsOf(EXPECTED_COLUMN_NAMES);
 		assertThat(this.csvFile.getRows()).containsExactlyInAnyOrderElementsOf(EXPECTED_VALUES);
-		verify(this.uploadedFile).getFileName();
-		verify(this.uploadedFile).getInputStream();
+	}
+
+	@Test
+	void testSemicolonsDelimetedConverter() throws IOException {
+		givenSomeFileUploadInputDelimetedBySemiColons();
+		givenSemicolonsAsColumnSeparator();
+		whenExtractingTheFileColumns();
+		expectColumnNamesAndRowsAreExtracted();
+	}
+
+	private void givenSomeFileUploadInputDelimetedBySemiColons() throws IOException {
+		setupMockFile(SEMICOLONS_MOCK_FILE);
+	}
+
+	private void givenSemicolonsAsColumnSeparator() {
+		this.uploadOptions.setColumnSeparator(ColumnSeparator.SEMICOLON);
+	}
+
+	@Test
+	void testTabstopsDelimetedConverter() throws IOException {
+		givenSomeFileUploadInputDelimetedByTabstops();
+		givenTabstopsAsColumnSeparator();
+		whenExtractingTheFileColumns();
+		expectColumnNamesAndRowsAreExtracted();
+	}
+
+	private void givenSomeFileUploadInputDelimetedByTabstops() throws IOException {
+		setupMockFile(TABSTOPS_MOCK_FILE);
+	}
+
+	private void givenTabstopsAsColumnSeparator() {
+		this.uploadOptions.setColumnSeparator(ColumnSeparator.TAB_STOPS);
 	}
 }

@@ -18,7 +18,9 @@ public class FileConverter {
 
 	public CSVFile convert(UploadedFile uploadedFile, UploadOptions uploadOptions) {
 		try (Reader fileReader = new InputStreamReader(uploadedFile.getInputStream())) {
-			CSVParser parser = CSVFormat.EXCEL.parse(fileReader);
+			CSVParser parser = CSVFormat.EXCEL
+					.withDelimiter(uploadOptions.getColumnSeparator().getValue())
+					.parse(fileReader);
 			var allLines = parser.getRecords().stream().map(MAPPER::toList).collect(toList());
 			return CSVFile.builder()
 					.filename(uploadedFile.getFileName())
