@@ -23,18 +23,21 @@ public class FileDataPanel implements Serializable{
 	private String filename;
 	
 	@Getter
+	@Setter
 	private List<String> columnNames;
 
 	@Getter
+	@Setter
 	private List<List<String>> fileRows;
 	
 	@Getter
 	@Setter
 	private UploadedFile uploadedFile;
 
-	public FileDataPanel() {
-		this.columnNames = getDummyColumnNames();
-		this.fileRows = getDummyFileRows();
+	public FileDataPanel(String filename, List<String> columnNames, List<List<String>> columnValues) {
+		this.filename = filename;
+		this.columnNames = columnNames;
+		this.fileRows = columnValues;
 	}
 
 	private List<String> getDummyColumnNames() {		
