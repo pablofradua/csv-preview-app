@@ -11,13 +11,16 @@ import org.primefaces.event.FileUploadEvent;
 public class FileUploadListener {
 
 	private final FileDataPanel fileDataPanel;
+	private final FileConverter fileConverter;
 	
 	@Inject
 	public FileUploadListener(FileDataPanel fileDataPanel) {
 		this.fileDataPanel = fileDataPanel;
+		this.fileConverter = new FileConverter();
 	}
 	
 	public void handleFileUpload(FileUploadEvent fileUploadEvent) {
-		fileDataPanel.setFilename(fileUploadEvent.getFile().getFileName());
+		CSVFile csvFile = this.fileConverter.convert(fileUploadEvent.getFile());
+		fileDataPanel.setCsvFile(csvFile);
 	}
 }

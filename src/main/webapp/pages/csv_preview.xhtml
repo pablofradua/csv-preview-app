@@ -43,18 +43,18 @@
 	            </div>
 	        </div>
 	        <div jsf:id="results-section" class="p-col full-height">
-	            	<h:outputFormat value="Displaying file: {0}" rendered="#{not empty fileDataPanel.filename}">
-	            		<f:param value="#{fileDataPanel.filename}"/>
+	            	<h:outputFormat value="Displaying file: {0}" rendered="#{fileDataPanel.fileLoaded}">
+	            		<f:param value="#{fileDataPanel.csvFile.filename}"/>
 	            	</h:outputFormat>
-	            	<h:outputText value="No file selected" rendered="#{empty fileDataPanel.filename}"/>
+	            	<h:outputText value="No file selected" rendered="#{fileDataPanel.noFileLoaded}"/>
 	                <p:dataTable id="table"
 	                             var="fileRow"
-	                             value="#{fileDataPanel.fileRows}"
+	                             value="#{fileDataPanel.csvFile.rows}"
 	                             scrollable="true"
 	                             scrollHeight="100%"
 	                             styleClass="csv-preview-table"
-	                             rendered="#{not empty fileDataPanel.filename}">
-						<p:columns value="#{fileDataPanel.columnNames}"  var="columnName" columnIndexVar="colIndex">  
+	                             rendered="#{fileDataPanel.fileLoaded}">
+						<p:columns value="#{fileDataPanel.csvFile.columnNames}"  var="columnName" columnIndexVar="colIndex">  
 						  <f:facet name="header">#{columnName}</f:facet>
 						  <h:outputText value="#{fileRow[colIndex]}" />
 						</p:columns>
