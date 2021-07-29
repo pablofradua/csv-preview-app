@@ -17,7 +17,7 @@ public class FileConverter {
 	private static final CSVRecordMapper MAPPER = new CSVRecordMapper();
 
 	public CSVFile convert(UploadedFile uploadedFile, UploadOptions uploadOptions) {
-		try (Reader fileReader = new InputStreamReader(uploadedFile.getInputStream())) {
+		try (Reader fileReader = new InputStreamReader(uploadedFile.getInputStream(), uploadOptions.getCharset())) {
 			CSVParser parser = CSVFormat.EXCEL
 					.withDelimiter(uploadOptions.getColumnSeparator().getValue())
 					.withQuote(uploadOptions.getStringDelimeter().getValue())

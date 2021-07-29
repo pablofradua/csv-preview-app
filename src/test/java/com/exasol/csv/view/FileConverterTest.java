@@ -6,6 +6,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,8 +30,11 @@ class FileConverterTest {
 	private static final String SEMICOLONS_MOCK_FILE = "semicolons_file.csv";
 	private static final String TABSTOPS_MOCK_FILE = "tabstops_file.csv";
 	private static final String SINGLE_QUOTES_FILE = "single_quotes_file.csv";
+	private static final String ANSI_FILE = "basic_file_ansi.csv";
+	
 	private static final List<String> EXPECTED_COLUMN_NAMES = List.of("seq","first","last","age","gender","birthday");
 	private static final List<List<String>> EXPECTED_VALUES = getExpectedValues();
+	private static final List<List<String>> EXPECTED_ANSI_VALUES = getExpectedAnsiValues();
 	
 	@Mock private UploadedFile uploadedFile;
 	private CSVFile csvFile;
@@ -49,6 +53,12 @@ class FileConverterTest {
 		expectedValues.add(List.of("1","Beulah","Ingram","29","Female","12/30/1965"));
 		expectedValues.add(List.of("2","Noah","Joseph","35","Male","3/24/1963"));
 		expectedValues.add(List.of("3","Lily","Oliver","45","Female","2/27/2003"));
+		return expectedValues;
+	}
+	
+	private static List<List<String>> getExpectedAnsiValues() {
+		var expectedValues = new ArrayList<List<String>>();
+		expectedValues.add(List.of("1","Beulah","Ingram ñ","29","Female","12/30/1965"));
 		return expectedValues;
 	}
 	
@@ -160,6 +170,27 @@ class FileConverterTest {
 
 	private void givenSingleQuotesAsStringDelimeter() {
 		this.uploadOptions.setStringDelimeter(StringDelimeter.SINGLE_QUOTES);
+	}
+
+	@Test
+	void testAnsiFile(){
+		givenAnAnsiFile();
+		givenAnsiAsCharset();
+		whenExtractingTheFileColumns();
+		expectAnsiColumnNamesAndRowsAreExtracted();
+	}
+
+	private void givenAnAnsiFile() {
+		setupMockFile(ANSI_FILE);
+	}
+
+	private void givenAnsiAsCharset() {
+		this.uploadOptions.setCharset(StandardCharsets.ISO_8859_1);
+	}
+
+	private void expectAnsiColumnNamesAndRowsAreExtracted() {
+		assertThat(this.csvFile.getColumnNames()).containsExactlyInAnyOrderElementsOf(EXPECTED_COLUMN_NAMES);
+		assertThat(this.csvFile.getRows()).containsExactlyInAnyOrderElementsOf(EXPECTED_ANSI_VALUES);
 	}
 
 }
