@@ -18,6 +18,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.primefaces.model.file.UploadedFile;
 
 import com.exasol.csv.view.file.ColumnSeparator;
+import com.exasol.csv.view.file.StringDelimeter;
 
 @ExtendWith(MockitoExtension.class)
 class FileConverterTest {
@@ -27,6 +28,7 @@ class FileConverterTest {
 	private static final String MAC_FILE = "basic_file_mac.csv";
 	private static final String SEMICOLONS_MOCK_FILE = "semicolons_file.csv";
 	private static final String TABSTOPS_MOCK_FILE = "tabstops_file.csv";
+	private static final String SINGLE_QUOTES_FILE = "single_quotes_file.csv";
 	private static final List<String> EXPECTED_COLUMN_NAMES = List.of("seq","first","last","age","gender","birthday");
 	private static final List<List<String>> EXPECTED_VALUES = getExpectedValues();
 	
@@ -142,6 +144,22 @@ class FileConverterTest {
 
 	private void givenSomeMacFile(){
 		setupMockFile(MAC_FILE);
+	}
+
+	@Test
+	void testSingleQuotesFile(){
+		givenSomeSingleQuotesFile();
+		givenSingleQuotesAsStringDelimeter();
+		whenExtractingTheFileColumns();
+		expectColumnNamesAndRowsAreExtracted();
+	}
+
+	private void givenSomeSingleQuotesFile() {
+		setupMockFile(SINGLE_QUOTES_FILE);
+	}
+
+	private void givenSingleQuotesAsStringDelimeter() {
+		this.uploadOptions.setStringDelimeter(StringDelimeter.SINGLE_QUOTES);
 	}
 
 }

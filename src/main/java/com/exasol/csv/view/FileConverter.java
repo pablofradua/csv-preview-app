@@ -20,6 +20,7 @@ public class FileConverter {
 		try (Reader fileReader = new InputStreamReader(uploadedFile.getInputStream())) {
 			CSVParser parser = CSVFormat.EXCEL
 					.withDelimiter(uploadOptions.getColumnSeparator().getValue())
+					.withQuote(uploadOptions.getStringDelimeter().getValue())
 					.parse(fileReader);
 			var allLines = parser.getRecords().stream().map(MAPPER::toList).collect(toList());
 			return CSVFile.builder()
