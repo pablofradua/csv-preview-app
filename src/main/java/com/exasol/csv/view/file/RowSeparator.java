@@ -1,7 +1,8 @@
 package com.exasol.csv.view.file;
 
 /**
- * Allowed values for setting the field delimeter, when reading CSV files.
+ * Allowed values for setting the row/line separator, when reading CSV files.
+ * Looks like Apache Commons CSV already chooses the proper one, so this should be unnecessary.
  * @author pablo
  *
  */
