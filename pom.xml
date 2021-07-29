@@ -31,7 +31,7 @@
         <dependency>
 		    <groupId>org.apache.commons</groupId>
 		    <artifactId>commons-csv</artifactId>
-		    <version>dep.commons-csv.version</version>
+		    <version>${dep.commons-csv.version}</version>
 		</dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
