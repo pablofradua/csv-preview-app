@@ -22,7 +22,9 @@ import com.exasol.csv.view.file.ColumnSeparator;
 @ExtendWith(MockitoExtension.class)
 class FileConverterTest {
 
-	private static final String DEFAULT_FILE_NAME = "basic_file.csv";
+	private static final String DEFAULT_FILE = "basic_file.csv";
+	private static final String WINDOWS_FILE = "basic_file_windows.csv";
+	private static final String MAC_FILE = "basic_file_mac.csv";
 	private static final String SEMICOLONS_MOCK_FILE = "semicolons_file.csv";
 	private static final String TABSTOPS_MOCK_FILE = "tabstops_file.csv";
 	private static final List<String> EXPECTED_COLUMN_NAMES = List.of("seq","first","last","age","gender","birthday");
@@ -49,26 +51,30 @@ class FileConverterTest {
 	}
 	
 	@AfterEach
-	void checkMocksWereCalled() throws IOException {
+	void checkMocksWereCalled() throws IOException{
 		verify(this.uploadedFile).getFileName();
 		verify(this.uploadedFile).getInputStream();
 	}
 
 	@Test
-	void testDefaultInputsConverter() throws IOException {
+	void testDefaultInputsConverter(){
 		givenSomeFileUploadInput();
 		whenExtractingTheFileColumns();
 		expectFilenameIsExtracted();
 		expectColumnNamesAndRowsAreExtracted();
 	}
 
-	private void givenSomeFileUploadInput() throws IOException {
-		setupMockFile(DEFAULT_FILE_NAME);
+	private void givenSomeFileUploadInput(){
+		setupMockFile(DEFAULT_FILE);
 	}
 
-	private void setupMockFile(String filename) throws IOException {
+	private void setupMockFile(String filename) {
 		when(this.uploadedFile.getFileName()).thenReturn(filename);
-		when(this.uploadedFile.getInputStream()).thenReturn(newInputStream(Paths.get("src", "test", "resources", filename)));
+		try {
+			when(this.uploadedFile.getInputStream()).thenReturn(newInputStream(Paths.get("src", "test", "resources", filename)));
+		}catch(IOException e) {
+			throw new CantSetupMockFileException(filename, e);
+		}
 	}
 
 	private void whenExtractingTheFileColumns() {
@@ -76,7 +82,7 @@ class FileConverterTest {
 	}
 
 	private void expectFilenameIsExtracted() {
-		assertThat(this.csvFile.getFilename()).isEqualTo(DEFAULT_FILE_NAME);
+		assertThat(this.csvFile.getFilename()).isEqualTo(DEFAULT_FILE);
 	}
 
 	private void expectColumnNamesAndRowsAreExtracted(){
@@ -85,14 +91,14 @@ class FileConverterTest {
 	}
 
 	@Test
-	void testSemicolonsDelimetedConverter() throws IOException {
+	void testSemicolonsDelimetedConverter(){
 		givenSomeFileUploadInputDelimetedBySemiColons();
 		givenSemicolonsAsColumnSeparator();
 		whenExtractingTheFileColumns();
 		expectColumnNamesAndRowsAreExtracted();
 	}
 
-	private void givenSomeFileUploadInputDelimetedBySemiColons() throws IOException {
+	private void givenSomeFileUploadInputDelimetedBySemiColons(){
 		setupMockFile(SEMICOLONS_MOCK_FILE);
 	}
 
@@ -101,18 +107,41 @@ class FileConverterTest {
 	}
 
 	@Test
-	void testTabstopsDelimetedConverter() throws IOException {
+	void testTabstopsDelimetedConverter(){
 		givenSomeFileUploadInputDelimetedByTabstops();
 		givenTabstopsAsColumnSeparator();
 		whenExtractingTheFileColumns();
 		expectColumnNamesAndRowsAreExtracted();
 	}
 
-	private void givenSomeFileUploadInputDelimetedByTabstops() throws IOException {
+	private void givenSomeFileUploadInputDelimetedByTabstops(){
 		setupMockFile(TABSTOPS_MOCK_FILE);
 	}
 
 	private void givenTabstopsAsColumnSeparator() {
 		this.uploadOptions.setColumnSeparator(ColumnSeparator.TAB_STOPS);
 	}
+
+	@Test
+	void testWindowsFile(){
+		givenSomeWindowsFile();
+		whenExtractingTheFileColumns();
+		expectColumnNamesAndRowsAreExtracted();
+	}
+
+	private void givenSomeWindowsFile(){
+		setupMockFile(WINDOWS_FILE);
+	}
+
+	@Test
+	void testMacFile(){
+		givenSomeMacFile();
+		whenExtractingTheFileColumns();
+		expectColumnNamesAndRowsAreExtracted();
+	}
+
+	private void givenSomeMacFile(){
+		setupMockFile(MAC_FILE);
+	}
+
 }
