@@ -19,6 +19,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.primefaces.model.file.UploadedFile;
 
 import com.exasol.csv.view.file.ColumnSeparator;
+import com.exasol.csv.view.file.HeaderOrigin;
 import com.exasol.csv.view.file.StringDelimeter;
 
 @ExtendWith(MockitoExtension.class)
@@ -31,8 +32,10 @@ class FileConverterTest {
 	private static final String TABSTOPS_MOCK_FILE = "tabstops_file.csv";
 	private static final String SINGLE_QUOTES_FILE = "single_quotes_file.csv";
 	private static final String ANSI_FILE = "basic_file_ansi.csv";
-	
+	private static final String NO_HEADER_FILE = "no_header_file.csv";
+
 	private static final List<String> EXPECTED_COLUMN_NAMES = List.of("seq","first","last","age","gender","birthday");
+	private static final List<String> EXPECTED_GENERATED_COLUMN_NAMES = List.of("Column 1","Column 2","Column 3","Column 4","Column 5","Column 6");
 	private static final List<List<String>> EXPECTED_VALUES = getExpectedValues();
 	private static final List<List<String>> EXPECTED_ANSI_VALUES = getExpectedAnsiValues();
 	
@@ -191,6 +194,31 @@ class FileConverterTest {
 	private void expectAnsiColumnNamesAndRowsAreExtracted() {
 		assertThat(this.csvFile.getColumnNames()).containsExactlyInAnyOrderElementsOf(EXPECTED_COLUMN_NAMES);
 		assertThat(this.csvFile.getRows()).containsExactlyInAnyOrderElementsOf(EXPECTED_ANSI_VALUES);
+	}
+
+	@Test
+	void testFirstRowContainsData(){
+		givenANoHeaderFile();
+		givenFirstRowContainsData();
+		whenExtractingTheFileColumns();
+		expectColumnNamesAreGenerated();
+		expectRowsAreExtracted();
+	}
+
+	private void givenANoHeaderFile() {
+		setupMockFile(NO_HEADER_FILE);
+	}
+
+	private void givenFirstRowContainsData() {
+		this.uploadOptions.setHeaderOrigin(HeaderOrigin.AUTO);
+	}
+
+	private void expectColumnNamesAreGenerated() {
+		assertThat(this.csvFile.getColumnNames()).containsExactlyInAnyOrderElementsOf(EXPECTED_GENERATED_COLUMN_NAMES);
+	}
+
+	private void expectRowsAreExtracted() {
+		assertThat(this.csvFile.getRows()).containsExactlyInAnyOrderElementsOf(EXPECTED_VALUES);
 	}
 
 }
