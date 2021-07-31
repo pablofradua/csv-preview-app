@@ -33,6 +33,11 @@
 		    <artifactId>commons-csv</artifactId>
 		    <version>${dep.commons-csv.version}</version>
 		</dependency>
+		<dependency>
+		    <groupId>org.omnifaces</groupId>
+		    <artifactId>omnifaces</artifactId>
+		    <version>${dep.omnifaces.version}</version>
+		</dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
@@ -124,6 +129,7 @@
         <dep.jakarta.version>8.0.0</dep.jakarta.version>
         <dep.primefaces.version>10.0.0</dep.primefaces.version>
         <dep.commons-csv.version>1.8</dep.commons-csv.version>
+        <dep.omnifaces.version>3.11.1</dep.omnifaces.version>
 
         <plugin.maven-failsafe-plugin.version>2.22.0</plugin.maven-failsafe-plugin.version>
         <plugin.maven-surefire-plugin.version>2.22.0</plugin.maven-surefire-plugin.version>
