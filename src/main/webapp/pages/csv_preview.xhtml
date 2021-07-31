@@ -16,8 +16,20 @@
 </h:head>
 
 <h:body>
+	<p:importEnum type="com.exasol.csv.view.file.ColumnSeparator" var="ColumnSeparator"
+                  allSuffix="ALL_ENUM_VALUES"/>
+	<p:importEnum type="com.exasol.csv.view.file.HeaderOrigin" var="HeaderOrigin"
+                  allSuffix="ALL_ENUM_VALUES"/>
+	<p:importEnum type="com.exasol.csv.view.file.RowSeparator" var="RowSeparator"
+                  allSuffix="ALL_ENUM_VALUES"/>
+	<p:importEnum type="com.exasol.csv.view.file.StringDelimeter" var="StringDelimeter"
+                  allSuffix="ALL_ENUM_VALUES"/>
+                  
     <div class="p-grid p-align-stretch vertical-container content">
         <h:form id="table-form" styleClass="full-height" enctype="multipart/form-data">
+        	<p:growl id="growl" sticky="true">
+        		<p:autoUpdate/>
+        	</p:growl>
 	        <div class="p-col-fixed full-height">
 	            <div class="full-height sidebar">
 	                <p:card id="control-card">
@@ -33,9 +45,8 @@
 	                        <div class="p-field">
 	                            <label for="@next">Column Separator</label>
 	                            <p:selectOneMenu id="column-separator" value="#{fileDataPanel.uploadOptions.columnSeparator}">
-	                                <f:selectItem itemLabel="Comma" itemValue="comma"/>
-	                                <f:selectItem itemLabel="Semicolon" itemValue="semicolon"/>
-	                                <f:selectItem itemLabel="Tabstop" itemValue="tabstop"/>
+	                            	<f:selectItems var="item" value="#{ColumnSeparator.ALL_ENUM_VALUES}" itemLabel="#{item.label}" itemValue="#{item}"/>
+	                            	<p:ajax listener="#{fileDataPanel.handleUploadOptionChange}" update="results-section"/>
 	                            </p:selectOneMenu>
 	                        </div>
 	                    </div>

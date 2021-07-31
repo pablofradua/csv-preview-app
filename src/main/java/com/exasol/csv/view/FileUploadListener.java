@@ -1,5 +1,11 @@
 package com.exasol.csv.view;
 
+import static com.exasol.csv.view.message.Messages.addErrorMessage;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -20,7 +26,25 @@ public class FileUploadListener {
 	}
 	
 	public void handleFileUpload(FileUploadEvent fileUploadEvent) {
-		CSVFile csvFile = this.fileConverter.convert(fileUploadEvent.getFile(), this.fileDataPanel.getUploadOptions());
-		this.fileDataPanel.setCsvFile(csvFile);
+		try{
+			ByteArrayOutputStream fileContentsBackup = this.backupFileContents(fileUploadEvent.getFile().getInputStream());
+			this.fileDataPanel.setFileContentsBackup(fileContentsBackup);
+			CSVFile csvFile = this.fileConverter.convert(fileUploadEvent.getFile().getFileName(), fileUploadEvent.getFile().getInputStream(), this.fileDataPanel.getUploadOptions());
+			this.fileDataPanel.setCsvFile(csvFile);
+		} catch (IOException e) {
+			addErrorMessage("Could not read the file");
+		} catch (CouldNotReadFileException e) {
+			addErrorMessage("Could not convert the file");
+		}
+	}
+
+	private ByteArrayOutputStream backupFileContents(InputStream fileContents) {
+		ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+		try{
+			fileContents.transferTo(byteArrayOutputStream);
+		} catch (IOException e) {
+			throw new CouldNotCloneFileContentsException(e);
+		}
+		return byteArrayOutputStream;
 	}
 }

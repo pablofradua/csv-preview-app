@@ -7,17 +7,24 @@ package com.exasol.csv.view.file;
  */
 public enum ColumnSeparator {
 
-	COMMA(','),
-	SEMICOLON(';'),
-	TAB_STOPS('\t');
+	COMMA(',', "Comma"),
+	SEMICOLON(';', "Semicolon"),
+	TAB_STOPS('\t', "Tabstop");
 	
 	private final char value;
 	
-	private ColumnSeparator(char value) {
+	private final String label;
+	
+	private ColumnSeparator(char value, String label) {
 		this.value = value;
+		this.label = label;
 	}
 
 	public char getValue() {
-		return value;
+		return this.value;
+	}
+
+	public String getLabel() {
+		return this.label;
 	}
 }

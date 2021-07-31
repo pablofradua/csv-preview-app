@@ -93,7 +93,12 @@ class FileConverterTest {
 	}
 
 	private void whenExtractingTheFileColumns() {
-		this.csvFile = this.fileConverter.convert(this.uploadedFile, this.uploadOptions);
+		try {
+			this.csvFile = this.fileConverter.convert(this.uploadedFile.getFileName(), this.uploadedFile.getInputStream(), this.uploadOptions);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	private void expectFilenameIsExtracted() {

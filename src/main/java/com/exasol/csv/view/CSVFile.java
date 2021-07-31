@@ -13,5 +13,4 @@ public class CSVFile implements Serializable {
 	@NonNull String filename;
     @NonNull List<String> columnNames;
     @NonNull List<List<String>> rows;
-	
 }
