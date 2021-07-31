@@ -27,4 +27,12 @@ public class UploadOptions implements Serializable {
 		this.charset = StandardCharsets.UTF_8;
 		this.headerOrigin = HeaderOrigin.FIRST_ROW;
 	}
+	
+	public void setParseColumnHeadersFromFirstRow(boolean firstRowContainsColumnHeaders) {
+		this.headerOrigin = firstRowContainsColumnHeaders ? HeaderOrigin.FIRST_ROW : HeaderOrigin.AUTO;
+	}
+	
+	public boolean getParseColumnHeadersFromFirstRow() {
+		return this.headerOrigin == HeaderOrigin.FIRST_ROW;
+	}
 }

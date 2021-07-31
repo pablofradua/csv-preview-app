@@ -49,6 +49,11 @@
 	                            	<p:ajax listener="#{fileDataPanel.handleUploadOptionChange}" update="results-section"/>
 	                            </p:selectOneMenu>
 	                        </div>
+	                        <div class="p-field">
+	                            <p:selectBooleanCheckbox value="#{fileDataPanel.uploadOptions.parseColumnHeadersFromFirstRow}" itemLabel="Parse column headers from first row">
+	                            	<p:ajax listener="#{fileDataPanel.handleUploadOptionChange}" update="results-section"/>
+                            	</p:selectBooleanCheckbox>
+	                        </div>
 	                    </div>
 	                </p:card>
 	            </div>
