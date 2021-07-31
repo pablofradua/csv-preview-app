@@ -8,17 +8,24 @@ package com.exasol.csv.view.file;
  */
 public enum RowSeparator {
 
-	LF(0x0A),
-	CR(0x0D),
-	CRLF(0x0D+0x0A);
+	LF(0x0A, "Line Feed"),
+	CR(0x0D, "Carriage Return"),
+	CRLF(0x0D+0x0A, "Carriage Return Line Feed");
 	
 	private final char value;
 	
-	private RowSeparator(int value) {
+	private final String label;
+	
+	private RowSeparator(int value, String label) {
 		this.value = (char) value;
+		this.label = label;
 	}
 
 	public char getValue() {
 		return value;
+	}
+
+	public String getLabel() {
+		return label;
 	}
 }

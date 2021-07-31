@@ -50,6 +50,13 @@
 	                            </p:selectOneMenu>
 	                        </div>
 	                        <div class="p-field">
+	                            <label for="@next">Row Separator</label>
+	                            <p:selectOneMenu id="row-separator" value="#{fileDataPanel.uploadOptions.rowSeparator}">
+	                            	<f:selectItems var="item" value="#{RowSeparator.ALL_ENUM_VALUES}" itemLabel="#{item.label}" itemValue="#{item}"/>
+	                            	<p:ajax listener="#{fileDataPanel.handleUploadOptionChange}" update="results-section"/>
+	                            </p:selectOneMenu>
+	                        </div>
+	                        <div class="p-field">
 	                            <p:selectBooleanCheckbox value="#{fileDataPanel.uploadOptions.parseColumnHeadersFromFirstRow}" itemLabel="Parse column headers from first row">
 	                            	<p:ajax listener="#{fileDataPanel.handleUploadOptionChange}" update="results-section"/>
                             	</p:selectBooleanCheckbox>
