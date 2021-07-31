@@ -64,6 +64,13 @@
 	                            </p:selectOneMenu>
 	                        </div>
 	                        <div class="p-field">
+	                            <label for="@next">Encoding</label>
+	                            <p:selectOneMenu id="encoding" value="#{fileDataPanel.uploadOptions.charset}" converter="omnifaces.SelectItemsConverter">
+	                            	<f:selectItems var="item" value="#{fileDataPanel.uploadOptions.availableCharsets()}"/>
+	                            	<p:ajax listener="#{fileDataPanel.handleUploadOptionChange}" update="results-section"/>
+	                            </p:selectOneMenu>
+	                        </div>
+	                        <div class="p-field">
 	                            <p:selectBooleanCheckbox value="#{fileDataPanel.uploadOptions.parseColumnHeadersFromFirstRow}" itemLabel="Parse column headers from first row">
 	                            	<p:ajax listener="#{fileDataPanel.handleUploadOptionChange}" update="results-section"/>
                             	</p:selectBooleanCheckbox>

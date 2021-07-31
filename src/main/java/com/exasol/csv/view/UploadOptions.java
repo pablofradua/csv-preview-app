@@ -3,6 +3,7 @@ package com.exasol.csv.view;
 import java.io.Serializable;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
+import java.util.Collection;
 
 import com.exasol.csv.view.file.ColumnSeparator;
 import com.exasol.csv.view.file.HeaderOrigin;
@@ -34,5 +35,9 @@ public class UploadOptions implements Serializable {
 	
 	public boolean getParseColumnHeadersFromFirstRow() {
 		return this.headerOrigin == HeaderOrigin.FIRST_ROW;
+	}
+	
+	public Collection<Charset> availableCharsets() {
+		return Charset.availableCharsets().values();
 	}
 }
