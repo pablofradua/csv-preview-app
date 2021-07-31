@@ -34,7 +34,7 @@ class FileConverterTest {
 	private static final String ANSI_FILE = "basic_file_ansi.csv";
 	private static final String NO_HEADER_FILE = "no_header_file.csv";
 
-	private static final List<String> EXPECTED_COLUMN_NAMES = List.of("seq","first","last","age","gender","birthday");
+	private static final List<String> EXPECTED_COLUMN_NAMES = List.of("age","birthday","first","gender","last","seq");
 	private static final List<String> EXPECTED_GENERATED_COLUMN_NAMES = List.of("Column 1","Column 2","Column 3","Column 4","Column 5","Column 6");
 	private static final List<List<String>> EXPECTED_VALUES = getExpectedValues();
 	private static final List<List<String>> EXPECTED_ANSI_VALUES = getExpectedAnsiValues();
@@ -106,8 +106,8 @@ class FileConverterTest {
 	}
 
 	private void expectColumnNamesAndRowsAreExtracted(){
-		assertThat(this.csvFile.getColumnNames()).containsExactlyInAnyOrderElementsOf(EXPECTED_COLUMN_NAMES);
-		assertThat(this.csvFile.getRows()).containsExactlyInAnyOrderElementsOf(EXPECTED_VALUES);
+		assertThat(this.csvFile.getColumnNames()).containsExactlyElementsOf(EXPECTED_COLUMN_NAMES);
+		assertThat(this.csvFile.getRows()).containsExactlyElementsOf(EXPECTED_VALUES);
 	}
 
 	@Test
@@ -197,8 +197,8 @@ class FileConverterTest {
 	}
 
 	private void expectAnsiColumnNamesAndRowsAreExtracted() {
-		assertThat(this.csvFile.getColumnNames()).containsExactlyInAnyOrderElementsOf(EXPECTED_COLUMN_NAMES);
-		assertThat(this.csvFile.getRows()).containsExactlyInAnyOrderElementsOf(EXPECTED_ANSI_VALUES);
+		assertThat(this.csvFile.getColumnNames()).containsExactlyElementsOf(EXPECTED_COLUMN_NAMES);
+		assertThat(this.csvFile.getRows()).containsExactlyElementsOf(EXPECTED_ANSI_VALUES);
 	}
 
 	@Test
@@ -219,11 +219,11 @@ class FileConverterTest {
 	}
 
 	private void expectColumnNamesAreGenerated() {
-		assertThat(this.csvFile.getColumnNames()).containsExactlyInAnyOrderElementsOf(EXPECTED_GENERATED_COLUMN_NAMES);
+		assertThat(this.csvFile.getColumnNames()).containsExactlyElementsOf(EXPECTED_GENERATED_COLUMN_NAMES);
 	}
 
 	private void expectRowsAreExtracted() {
-		assertThat(this.csvFile.getRows()).containsExactlyInAnyOrderElementsOf(EXPECTED_VALUES);
+		assertThat(this.csvFile.getRows()).containsExactlyElementsOf(EXPECTED_VALUES);
 	}
 
 }

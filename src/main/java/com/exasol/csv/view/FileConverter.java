@@ -24,7 +24,7 @@ public class FileConverter {
 			CSVParser parser = CSV_FORMAT_FACTORY.getInstance(uploadOptions).parse(fileReader);
 			HeaderOrigin headerOrigin = uploadOptions.getHeaderOrigin();
 			List<List<String>> rows =  parser.getRecords().stream().map(MAPPER::toList).collect(toList());
-			List<String> columnNames = headerOrigin == FIRST_ROW ? parser.getHeaderNames() : generateColumnsNames(rows);
+			List<String> columnNames = headerOrigin == FIRST_ROW ? parser.getHeaderNames().stream().sorted(String::compareTo).collect(toList()) : generateColumnsNames(rows);
 			return CSVFile.builder()
 					.filename(filename)
 					.columnNames(columnNames)
