@@ -7,6 +7,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
@@ -37,9 +39,13 @@ public class FileDataPanel implements Serializable{
 	@Setter
 	private ByteArrayOutputStream fileContentsBackup;
 	
+	@Getter
+	@Setter List<List<String>> filteredRows;
+	
 	public FileDataPanel() {
 		this.fileConverter = new FileConverter();
 		this.uploadOptions = new UploadOptions();
+		this.filteredRows = new ArrayList<>();
 	}
 	
 	public boolean isFileLoaded() {
