@@ -93,7 +93,7 @@
 	                             rendered="#{fileDataPanel.fileLoaded}"
 	                             virtualScroll="true"
 	                             scrollRows="50">
-						<p:columns value="#{fileDataPanel.csvFile.columnNames}"  var="columnName" columnIndexVar="colIndex">  
+						<p:columns value="#{fileDataPanel.csvFile.columnNames}"  var="columnName" columnIndexVar="colIndex" sortBy="#{fileRow[colIndex]}">  
 						  <f:facet name="header">#{columnName}</f:facet>
 						  <h:outputText value="#{fileRow[colIndex]}" />
 						</p:columns>
