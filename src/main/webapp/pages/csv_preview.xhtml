@@ -88,7 +88,7 @@
             		<f:param value="#{fileDataPanel.csvFile.filename}"/>
             	</h:outputFormat>
             	<h:outputText value="No file selected" rendered="#{fileDataPanel.noFileLoaded}"/>
-                <p:inputText id="fileSearchFilter" onkeyup="filterResults()" placeholder="Search file" rendered="#{fileDataPanel.fileLoaded}"/>
+                <p:inputText id="fileSearchFilter" onkeyup="filterResults()" placeholder="Search file" disabled="#{fileDataPanel.noFileLoaded}"/>
                 <p:dataTable id="table"
                              var="fileRow"
                              widgetVar="resultsTable"
