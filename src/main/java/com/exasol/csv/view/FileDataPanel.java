@@ -9,11 +9,13 @@ import java.io.InputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
 import org.primefaces.model.file.UploadedFile;
+import org.primefaces.util.LangUtils;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -65,6 +67,16 @@ public class FileDataPanel implements Serializable{
 		} catch (CouldNotReadFileException e) {
 			addErrorMessage("Could not convert the file");
 		}
+	}
+	
+	public boolean filterFile(Object value, Object filter, Locale locale) {
+        String filterText = (filter == null) ? null : filter.toString().trim().toLowerCase();
+        if (LangUtils.isValueBlank(filterText)) {
+            return true;
+        }
+
+        List<String> rowValues = (List<String>) value;
+        return rowValues.stream().anyMatch(rowValue->rowValue.toLowerCase().contains(filterText));
 	}
 
 }

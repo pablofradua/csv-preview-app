@@ -25,82 +25,94 @@
 	<p:importEnum type="com.exasol.csv.view.file.StringDelimeter" var="StringDelimeter"
                   allSuffix="ALL_ENUM_VALUES"/>
                   
-    <div class="p-grid p-align-stretch vertical-container content">
-        <h:form id="table-form" styleClass="full-height" enctype="multipart/form-data">
-        	<p:growl id="growl" sticky="true">
-        		<p:autoUpdate/>
-        	</p:growl>
-	        <div class="p-col-fixed full-height">
-	            <div class="full-height sidebar">
-	                <p:card id="control-card">
-	                    <f:facet name="title">
-	                        File
-	                    </f:facet>
-	                    <div class="ui-fluid">
-	                        <div class="p-field">
-	                            <label for="@next">Step 1: Upload a file</label>
-	                            <p:fileUpload accept="text/csv" allowTypes="/(\.|\/)(csv)$/" label="Select file" listener="#{fileUploadListener.handleFileUpload}"
-	                            update="results-section"/>
-	                        </div>
-	                        <div class="p-field">
-	                            <label for="@next">Column Separator</label>
-	                            <p:selectOneMenu id="column-separator" value="#{fileDataPanel.uploadOptions.columnSeparator}">
-	                            	<f:selectItems var="item" value="#{ColumnSeparator.ALL_ENUM_VALUES}" itemLabel="#{item.label}" itemValue="#{item}"/>
-	                            	<p:ajax listener="#{fileDataPanel.handleUploadOptionChange}" update="results-section"/>
-	                            </p:selectOneMenu>
-	                        </div>
-	                        <div class="p-field">
-	                            <label for="@next">Row Separator</label>
-	                            <p:selectOneMenu id="row-separator" value="#{fileDataPanel.uploadOptions.rowSeparator}">
-	                            	<f:selectItems var="item" value="#{RowSeparator.ALL_ENUM_VALUES}" itemLabel="#{item.label}" itemValue="#{item}"/>
-	                            	<p:ajax listener="#{fileDataPanel.handleUploadOptionChange}" update="results-section"/>
-	                            </p:selectOneMenu>
-	                        </div>
-	                        <div class="p-field">
-	                            <label for="@next">Column Delimeter</label>
-	                            <p:selectOneMenu id="column-delimeter" value="#{fileDataPanel.uploadOptions.stringDelimeter}">
-	                            	<f:selectItems var="item" value="#{StringDelimeter.ALL_ENUM_VALUES}" itemLabel="#{item.label}" itemValue="#{item}"/>
-	                            	<p:ajax listener="#{fileDataPanel.handleUploadOptionChange}" update="results-section"/>
-	                            </p:selectOneMenu>
-	                        </div>
-	                        <div class="p-field">
-	                            <label for="@next">Encoding</label>
-	                            <p:selectOneMenu id="encoding" value="#{fileDataPanel.uploadOptions.charset}" converter="omnifaces.SelectItemsConverter">
-	                            	<f:selectItems var="item" value="#{fileDataPanel.uploadOptions.availableCharsets()}"/>
-	                            	<p:ajax listener="#{fileDataPanel.handleUploadOptionChange}" update="results-section"/>
-	                            </p:selectOneMenu>
-	                        </div>
-	                        <div class="p-field">
-	                            <p:selectBooleanCheckbox value="#{fileDataPanel.uploadOptions.parseColumnHeadersFromFirstRow}" itemLabel="Parse column headers from first row">
-	                            	<p:ajax listener="#{fileDataPanel.handleUploadOptionChange}" update="results-section"/>
-                            	</p:selectBooleanCheckbox>
-	                        </div>
-	                    </div>
-	                </p:card>
-	            </div>
-	        </div>
-	        <div jsf:id="results-section" class="p-col full-height">
-	            	<h:outputFormat value="Displaying file: {0}" rendered="#{fileDataPanel.fileLoaded}">
-	            		<f:param value="#{fileDataPanel.csvFile.filename}"/>
-	            	</h:outputFormat>
-	            	<h:outputText value="No file selected" rendered="#{fileDataPanel.noFileLoaded}"/>
-	                <p:dataTable id="table"
-	                             var="fileRow"
-	                             value="#{fileDataPanel.csvFile.rows}"
-	                             scrollable="true"
-	                             scrollHeight="100%"
-	                             styleClass="csv-preview-table"
-	                             rendered="#{fileDataPanel.fileLoaded}"
-	                             virtualScroll="true"
-	                             scrollRows="50"
-				     stickyHeader="true">
-						<p:columns value="#{fileDataPanel.csvFile.columnNames}"  var="columnName" columnIndexVar="colIndex" sortBy="#{fileRow[colIndex]}">  
-						  <f:facet name="header">#{columnName}</f:facet>
-						  <h:outputText value="#{fileRow[colIndex]}" />
-						</p:columns>
-	                </p:dataTable>
-	        </div>
-        </h:form>
-    </div>
+  	<h:form id="table-form" styleClass="full-height p-grid p-align-stretch vertical-container content" enctype="multipart/form-data">
+       	<p:growl id="growl" sticky="true">
+       		<p:autoUpdate/>
+       	</p:growl>
+        <div class="p-col-fixed full-height">
+            <div class="full-height sidebar">
+                <p:card id="control-card">
+                    <f:facet name="title">
+                        File
+                    </f:facet>
+                    <div class="ui-fluid">
+                        <div class="p-field">
+                            <label for="@next">Step 1: Upload a file</label>
+                            <p:fileUpload accept="text/csv" allowTypes="/(\.|\/)(csv)$/" label="Select file" listener="#{fileUploadListener.handleFileUpload}"
+                            update="results-section"/>
+                        </div>
+                        <div class="p-field">
+                            <label for="@next">Column Separator</label>
+                            <p:selectOneMenu id="column-separator" value="#{fileDataPanel.uploadOptions.columnSeparator}">
+                            	<f:selectItems var="item" value="#{ColumnSeparator.ALL_ENUM_VALUES}" itemLabel="#{item.label}" itemValue="#{item}"/>
+                            	<p:ajax listener="#{fileDataPanel.handleUploadOptionChange}" update="results-section"/>
+                            </p:selectOneMenu>
+                        </div>
+                        <div class="p-field">
+                            <label for="@next">Row Separator</label>
+                            <p:selectOneMenu id="row-separator" value="#{fileDataPanel.uploadOptions.rowSeparator}">
+                            	<f:selectItems var="item" value="#{RowSeparator.ALL_ENUM_VALUES}" itemLabel="#{item.label}" itemValue="#{item}"/>
+                            	<p:ajax listener="#{fileDataPanel.handleUploadOptionChange}" update="results-section"/>
+                            </p:selectOneMenu>
+                        </div>
+                        <div class="p-field">
+                            <label for="@next">Column Delimeter</label>
+                            <p:selectOneMenu id="column-delimeter" value="#{fileDataPanel.uploadOptions.stringDelimeter}">
+                            	<f:selectItems var="item" value="#{StringDelimeter.ALL_ENUM_VALUES}" itemLabel="#{item.label}" itemValue="#{item}"/>
+                            	<p:ajax listener="#{fileDataPanel.handleUploadOptionChange}" update="results-section"/>
+                            </p:selectOneMenu>
+                        </div>
+                        <div class="p-field">
+                            <label for="@next">Encoding</label>
+                            <p:selectOneMenu id="encoding" value="#{fileDataPanel.uploadOptions.charset}" converter="omnifaces.SelectItemsConverter">
+                            	<f:selectItems var="item" value="#{fileDataPanel.uploadOptions.availableCharsets()}"/>
+                            	<p:ajax listener="#{fileDataPanel.handleUploadOptionChange}" update="results-section"/>
+                            </p:selectOneMenu>
+                        </div>
+                        <div class="p-field">
+                            <p:selectBooleanCheckbox value="#{fileDataPanel.uploadOptions.parseColumnHeadersFromFirstRow}" itemLabel="Parse column headers from first row">
+                            	<p:ajax listener="#{fileDataPanel.handleUploadOptionChange}" update="results-section"/>
+                           	</p:selectBooleanCheckbox>
+                        </div>
+                    </div>
+                </p:card>
+            </div>
+        </div>
+        <div jsf:id="results-section" class="p-col full-height">
+            	<h:outputFormat value="Displaying file: {0}" rendered="#{fileDataPanel.fileLoaded}">
+            		<f:param value="#{fileDataPanel.csvFile.filename}"/>
+            	</h:outputFormat>
+            	<h:outputText value="No file selected" rendered="#{fileDataPanel.noFileLoaded}"/>
+                <p:inputText id="fileSearchFilter" onkeyup="filterResults()" placeholder="Search file"/>
+                <p:dataTable id="table"
+                             var="fileRow"
+                             widgetVar="resultsTable"
+                             value="#{fileDataPanel.csvFile.rows}"
+                             filteredValue="#{fileDataPanel.filteredRows}"
+                             scrollable="true"
+                             scrollHeight="100%"
+                             styleClass="csv-preview-table"
+                             rendered="#{fileDataPanel.fileLoaded}"
+                             virtualScroll="true"
+                             scrollRows="50"
+                             globalFilterFunction="#{fileDataPanel.filterFile}">
+                    <f:facet name="header">
+	                    <p:inputText id="globalFilter" onkeyup="PF('resultsTable').filter()"/>
+                    </f:facet>
+					<p:columns value="#{fileDataPanel.csvFile.columnNames}"  var="columnName" columnIndexVar="colIndex" sortBy="#{fileRow[colIndex]}" filterable="true">  
+					  <f:facet name="header">#{columnName}</f:facet>
+					  <h:outputText value="#{fileRow[colIndex]}" />
+					</p:columns>
+                </p:dataTable>
+        </div>
+        <script type="text/javascript">
+	        function filterResults() {
+	        	var filterValue = $("input[id$='fileSearchFilter']").val();
+	
+		        $("input[id$='globalFilter']").val(filterValue);
+		        $("input[id$='globalFilter']").trigger('keyup')
+	        }
+        </script> 
+    </h:form>
 </h:body>
 </html>
