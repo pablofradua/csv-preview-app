@@ -67,7 +67,7 @@
                         </div>
                         <div class="p-field">
                             <label for="@next">Encoding</label>
-                            <p:selectOneMenu id="encoding" value="#{fileDataPanel.uploadOptions.charset}" converter="omnifaces.SelectItemsConverter" disabled="#{fileDataPanel.noFileLoaded}"
+                            <p:selectOneMenu id="encoding" value="#{fileDataPanel.uploadOptions.charset}" converter="com.exasol.csv.view.CharsetConverter" disabled="#{fileDataPanel.noFileLoaded}"
                             	styleClass="upload-option">
                             	<f:selectItems var="item" value="#{fileDataPanel.uploadOptions.availableCharsets()}"/>
                             	<p:ajax listener="#{fileDataPanel.handleUploadOptionChange}" update="table"/>
