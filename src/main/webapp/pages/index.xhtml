@@ -106,7 +106,7 @@
                              rendered="#{fileDataPanel.fileLoaded}"
                              virtualScroll="true"
                              scrollRows="50"
-                             globalFilterFunction="#{fileDataPanel.filterFile}">
+                             globalFilterFunction="#{csvTableGlobalFilter.filterFile}">
                     <f:facet name="header">
 	                    <p:inputText id="globalFilter" onkeyup="PF('resultsTable').filter()"/>
                     </f:facet>
