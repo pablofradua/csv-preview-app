@@ -10,11 +10,13 @@ class CSVFormatFactory {
 	public CSVFormat getInstance(UploadOptions uploadOptions) {
 		if (uploadOptions.getHeaderOrigin() == HeaderOrigin.FIRST_ROW) {
 			return CSVFormat.EXCEL
+					.withIgnoreEmptyLines()
 					.withDelimiter(uploadOptions.getColumnSeparator().getValue())
 					.withQuote(uploadOptions.getStringDelimiter().getValue())
 					.withFirstRecordAsHeader();
 		}else {
 			return CSVFormat.EXCEL
+					.withIgnoreEmptyLines()
 					.withDelimiter(uploadOptions.getColumnSeparator().getValue())
 					.withQuote(uploadOptions.getStringDelimiter().getValue());
 		}
