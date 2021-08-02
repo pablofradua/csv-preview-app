@@ -1,4 +1,4 @@
-package com.exasol.csv.view;
+package com.exasol.csv.view.converter;
 
 import java.nio.charset.Charset;
 
