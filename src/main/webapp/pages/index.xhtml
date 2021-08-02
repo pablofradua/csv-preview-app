@@ -36,7 +36,7 @@
                         File
                     </f:facet>
                     <div class="ui-fluid">
-                         <h4>Step 1: Upload a file</h4>
+                        <h4>Step 1: Upload a file</h4>
                         <div class="p-field">
                             <p:fileUpload accept="text/csv" allowTypes="/(\.|\/)(csv)$/" label="Select file" listener="#{fileUploadListener.handleFileUpload}"
                             update="results-section @(.upload-option) file-upload-options"/>
@@ -45,34 +45,34 @@
                         	<div jsf:rendered="#{fileDataPanel.fileLoaded}">
                         		<hr/>
 		                        <h4>Step 2: Configure display of #{fileDataPanel.csvFile.filename}</h4>
-		                        <div class="p-field">
-		                            <label for="@next">Column Separator</label>
+		                        <div class="p-field p-grid">
+		                            <label for="@next" class="p-col">Column Separator</label>
 		                            <p:selectOneMenu id="column-separator" value="#{fileDataPanel.uploadOptions.columnSeparator}" disabled="#{fileDataPanel.noFileLoaded}"
-		                            	styleClass="upload-option">
+		                            	styleClass="upload-option p-col-fixed" style="width:200px">
 		                            	<f:selectItems var="item" value="#{ColumnSeparator.ALL_ENUM_VALUES}" itemLabel="#{item.label}" itemValue="#{item}"/>
 		                            	<p:ajax listener="#{uploadOptionsListener.handleUploadOptionChange}" update="table"/>
 		                            </p:selectOneMenu>
 		                        </div>
-		                        <div class="p-field">
-		                            <label for="@next">Row Separator</label>
+		                        <div class="p-field p-grid">
+		                            <label for="@next" class="p-col">Row Separator</label>
 		                            <p:selectOneMenu id="row-separator" value="#{fileDataPanel.uploadOptions.rowSeparator}" disabled="#{fileDataPanel.noFileLoaded}"
-		                            	styleClass="upload-option">
+		                            	styleClass="upload-option p-col-fixed" style="width:200px">
 		                            	<f:selectItems var="item" value="#{RowSeparator.ALL_ENUM_VALUES}" itemLabel="#{item.label}" itemValue="#{item}"/>
 		                            	<p:ajax listener="#{uploadOptionsListener.handleUploadOptionChange}" update="table"/>
 		                            </p:selectOneMenu>
 		                        </div>
-		                        <div class="p-field">
-		                            <label for="@next">Column Delimiter</label>
+		                        <div class="p-field p-grid">
+		                            <label for="@next" class="p-col">Column Delimiter</label>
 		                            <p:selectOneMenu id="column-delimiter" value="#{fileDataPanel.uploadOptions.stringDelimiter}" disabled="#{fileDataPanel.noFileLoaded}"
-		                            	styleClass="upload-option">
+		                            	styleClass="upload-option p-col-fixed" style="width:200px">
 		                            	<f:selectItems var="item" value="#{StringDelimiter.ALL_ENUM_VALUES}" itemLabel="#{item.label}" itemValue="#{item}"/>
 		                            	<p:ajax listener="#{uploadOptionsListener.handleUploadOptionChange}" update="table"/>
 		                            </p:selectOneMenu>
 		                        </div>
-		                        <div class="p-field">
-		                            <label for="@next">Encoding</label>
+		                        <div class="p-field p-grid">
+		                            <label for="@next" class="p-col">Encoding</label>
 		                            <p:selectOneMenu id="encoding" value="#{fileDataPanel.uploadOptions.charset}" converter="com.exasol.csv.view.CharsetConverter" disabled="#{fileDataPanel.noFileLoaded}"
-		                            	styleClass="upload-option">
+		                            	styleClass="upload-option p-col-fixed" style="width:200px">
 		                            	<f:selectItems var="item" value="#{fileDataPanel.uploadOptions.availableCharsets()}"/>
 		                            	<p:ajax listener="#{uploadOptionsListener.handleUploadOptionChange}" update="table"/>
 		                            </p:selectOneMenu>
