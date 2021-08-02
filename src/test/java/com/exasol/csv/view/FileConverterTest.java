@@ -177,7 +177,7 @@ class FileConverterTest {
 	}
 
 	private void givenSingleQuotesAsStringDelimeter() {
-		this.uploadOptions.setStringDelimeter(StringDelimiter.SINGLE_QUOTES);
+		this.uploadOptions.setStringDelimiter(StringDelimiter.SINGLE_QUOTES);
 	}
 
 	@Test

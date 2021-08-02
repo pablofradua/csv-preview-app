@@ -10,12 +10,12 @@ class CSVFormatFactory {
 		if (uploadOptions.getHeaderOrigin() == HeaderOrigin.FIRST_ROW) {
 			return CSVFormat.EXCEL
 					.withDelimiter(uploadOptions.getColumnSeparator().getValue())
-					.withQuote(uploadOptions.getStringDelimeter().getValue())
+					.withQuote(uploadOptions.getStringDelimiter().getValue())
 					.withFirstRecordAsHeader();
 		}else {
 			return CSVFormat.EXCEL
 					.withDelimiter(uploadOptions.getColumnSeparator().getValue())
-					.withQuote(uploadOptions.getStringDelimeter().getValue());
+					.withQuote(uploadOptions.getStringDelimiter().getValue());
 		}
 	}
 }
