@@ -90,15 +90,18 @@
             </div>
         </div>
         <div jsf:id="results-section" class="p-col full-height">
-        		<div id="results-header" class="p-grid">
-        			<div id="results-filename" class="p-col ui-widget">
+        		<div id="results-header" class="p-d-flex p-jc-between">
+        			<div id="results-filename" class="ui-widget">
 		            	<h:outputFormat value="Displaying file: {0}" rendered="#{fileDataPanel.fileLoaded}" styleClass="stick-to-bottom">
 		            		<f:param value="#{fileDataPanel.csvFile.filename}"/>
 		            	</h:outputFormat>
 		            	<h:outputText value="No file selected" rendered="#{fileDataPanel.noFileLoaded}" styleClass="stick-to-bottom"/>
 	            	</div>
-        			<div id="search-section" class="p-col">
-	                	<p:inputText id="fileSearchFilter" onkeyup="filterResults()" placeholder="Search file" disabled="#{fileDataPanel.noFileLoaded}"/>
+        			<div id="search-section">
+        				<div class="ui-inputgroup">
+	    					<span class="ui-inputgroup-addon"><i class="pi pi-search"></i></span>
+		                	<p:inputText id="fileSearchFilter" onkeyup="filterResults()" placeholder="Search file" disabled="#{fileDataPanel.noFileLoaded}"/>
+	                	</div>
                 	</div>
                 </div>
                 <p:dataTable id="table"

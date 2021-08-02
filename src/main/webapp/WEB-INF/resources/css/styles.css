@@ -37,15 +37,6 @@ div#results-filename{
 	color:#333333
 }
 
-.stick-to-bottom {
-	vertical-align: bottom;
-	display:inline-block"
-}
-
-div#search-section{
-	text-align: right;
-}
-
 .ui-fileupload div {
 	border: none !important;
 	background: none !important;
