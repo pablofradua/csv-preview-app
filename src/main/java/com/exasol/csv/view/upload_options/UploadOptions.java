@@ -1,14 +1,9 @@
-package com.exasol.csv.view;
+package com.exasol.csv.view.upload_options;
 
 import java.io.Serializable;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.Collection;
-
-import com.exasol.csv.view.file.ColumnSeparator;
-import com.exasol.csv.view.file.HeaderOrigin;
-import com.exasol.csv.view.file.RowSeparator;
-import com.exasol.csv.view.file.StringDelimiter;
 
 import lombok.Data;
 

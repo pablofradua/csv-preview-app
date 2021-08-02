@@ -11,6 +11,7 @@ import javax.inject.Named;
 import org.primefaces.model.file.UploadedFile;
 
 import com.exasol.csv.service.CSVFile;
+import com.exasol.csv.view.upload_options.UploadOptions;
 
 import lombok.Getter;
 import lombok.Setter;

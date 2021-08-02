@@ -1,4 +1,4 @@
-package com.exasol.csv.view.file;
+package com.exasol.csv.view.upload_options;
 
 /**
  * Allowed values for setting the row/line separator, when reading CSV files.

@@ -1,6 +1,6 @@
 package com.exasol.csv.service;
 
-import static com.exasol.csv.view.file.HeaderOrigin.FIRST_ROW;
+import static com.exasol.csv.view.upload_options.HeaderOrigin.FIRST_ROW;
 import static java.util.stream.Collectors.toList;
 
 import java.io.IOException;
@@ -12,8 +12,8 @@ import java.util.stream.IntStream;
 
 import org.apache.commons.csv.CSVParser;
 
-import com.exasol.csv.view.UploadOptions;
-import com.exasol.csv.view.file.HeaderOrigin;
+import com.exasol.csv.view.upload_options.HeaderOrigin;
+import com.exasol.csv.view.upload_options.UploadOptions;
 
 public class FileConverter {
 

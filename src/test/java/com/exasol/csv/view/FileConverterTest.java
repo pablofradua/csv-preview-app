@@ -20,9 +20,10 @@ import org.primefaces.model.file.UploadedFile;
 
 import com.exasol.csv.service.CSVFile;
 import com.exasol.csv.service.FileConverter;
-import com.exasol.csv.view.file.ColumnSeparator;
-import com.exasol.csv.view.file.HeaderOrigin;
-import com.exasol.csv.view.file.StringDelimiter;
+import com.exasol.csv.view.upload_options.ColumnSeparator;
+import com.exasol.csv.view.upload_options.HeaderOrigin;
+import com.exasol.csv.view.upload_options.StringDelimiter;
+import com.exasol.csv.view.upload_options.UploadOptions;
 
 @ExtendWith(MockitoExtension.class)
 class FileConverterTest {

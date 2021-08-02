@@ -1,4 +1,4 @@
-package com.exasol.csv.view.file;
+package com.exasol.csv.view.upload_options;
 
 public enum StringDelimiter {
 

@@ -1,4 +1,4 @@
-package com.exasol.csv.view;
+package com.exasol.csv.view.upload_options;
 
 import static com.exasol.csv.view.message.Messages.addErrorMessage;
 
@@ -13,6 +13,7 @@ import javax.inject.Named;
 import com.exasol.csv.service.CSVFile;
 import com.exasol.csv.service.CouldNotReadFileException;
 import com.exasol.csv.service.FileConverter;
+import com.exasol.csv.view.FileDataPanel;
 
 @Named
 @RequestScoped
