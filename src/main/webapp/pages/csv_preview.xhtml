@@ -9,7 +9,7 @@
       xmlns:jsf="http://xmlns.jcp.org/jsf">
 
 <h:head>
-    <title>Data Table Test</title>
+    <title>CSV Preview</title>
 
     <h:outputStylesheet library="vendor" name="primeflex/primeflex.min.css"/>
     <h:outputStylesheet library="css" name="styles.css"/>
@@ -29,8 +29,8 @@
        	<p:growl id="growl" sticky="true">
        		<p:autoUpdate/>
        	</p:growl>
-        <div class="p-col-fixed full-height">
-            <div class="full-height sidebar">
+        <div class="p-col-fixed full-height sidebar">
+            <div class="full-height">
                 <p:card id="control-card">
                     <f:facet name="title">
                         File
@@ -58,7 +58,7 @@
                             </p:selectOneMenu>
                         </div>
                         <div class="p-field">
-                            <label for="@next">Column Delimeter</label>
+                            <label for="@next">Column Delimiter</label>
                             <p:selectOneMenu id="column-delimeter" value="#{fileDataPanel.uploadOptions.stringDelimeter}" disabled="#{fileDataPanel.noFileLoaded}"
                             	styleClass="upload-option">
                             	<f:selectItems var="item" value="#{StringDelimeter.ALL_ENUM_VALUES}" itemLabel="#{item.label}" itemValue="#{item}"/>
@@ -84,11 +84,17 @@
             </div>
         </div>
         <div jsf:id="results-section" class="p-col full-height">
-            	<h:outputFormat value="Displaying file: {0}" rendered="#{fileDataPanel.fileLoaded}">
-            		<f:param value="#{fileDataPanel.csvFile.filename}"/>
-            	</h:outputFormat>
-            	<h:outputText value="No file selected" rendered="#{fileDataPanel.noFileLoaded}"/>
-                <p:inputText id="fileSearchFilter" onkeyup="filterResults()" placeholder="Search file" disabled="#{fileDataPanel.noFileLoaded}"/>
+        		<div id="results-header" class="p-grid">
+        			<div id="results-filename" class="p-col ui-widget">
+		            	<h:outputFormat value="Displaying file: {0}" rendered="#{fileDataPanel.fileLoaded}" styleClass="stick-to-bottom">
+		            		<f:param value="#{fileDataPanel.csvFile.filename}"/>
+		            	</h:outputFormat>
+		            	<h:outputText value="No file selected" rendered="#{fileDataPanel.noFileLoaded}" styleClass="stick-to-bottom"/>
+	            	</div>
+        			<div id="search-section" class="p-col">
+	                	<p:inputText id="fileSearchFilter" onkeyup="filterResults()" placeholder="Search file" disabled="#{fileDataPanel.noFileLoaded}"/>
+                	</div>
+                </div>
                 <p:dataTable id="table"
                              var="fileRow"
                              widgetVar="resultsTable"

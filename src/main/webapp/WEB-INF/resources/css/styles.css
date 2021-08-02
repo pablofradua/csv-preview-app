@@ -3,7 +3,7 @@
 }
 
 .sidebar {
-    width: 300px;
+    width: 350px;
 }
 
 .full-height {
@@ -14,7 +14,7 @@
     height: 100%;
 }
 
-.ui-datatable .ui-datatable-header {
+.ui-datatable .ui-datatable-header{
     display: none;
 }
 
@@ -29,4 +29,33 @@
 .csv-preview-table {
 	min-height: 500px;
 	min-width: 500px;
+}
+
+div#results-filename{
+	margin-bottom: auto;
+	margin-top:auto;
+	color:#333333
+}
+
+.stick-to-bottom {
+	vertical-align: bottom;
+	display:inline-block"
+}
+
+div#search-section{
+	text-align: right;
+}
+
+.ui-fileupload div {
+	border: none !important;
+	background: none !important;
+}
+
+.ui-fileupload-choose span.ui-icon {
+	display: none !important;
+}
+
+.ui-fileupload-cancel,
+.ui-fileupload-content {
+    display: none !important;
 }
