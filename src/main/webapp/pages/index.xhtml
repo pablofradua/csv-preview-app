@@ -46,7 +46,7 @@
                             <p:selectOneMenu id="column-separator" value="#{fileDataPanel.uploadOptions.columnSeparator}" disabled="#{fileDataPanel.noFileLoaded}"
                             	styleClass="upload-option">
                             	<f:selectItems var="item" value="#{ColumnSeparator.ALL_ENUM_VALUES}" itemLabel="#{item.label}" itemValue="#{item}"/>
-                            	<p:ajax listener="#{fileDataPanel.handleUploadOptionChange}" update="table"/>
+                            	<p:ajax listener="#{uploadOptionsListener.handleUploadOptionChange}" update="table"/>
                             </p:selectOneMenu>
                         </div>
                         <div class="p-field">
@@ -54,7 +54,7 @@
                             <p:selectOneMenu id="row-separator" value="#{fileDataPanel.uploadOptions.rowSeparator}" disabled="#{fileDataPanel.noFileLoaded}"
                             	styleClass="upload-option">
                             	<f:selectItems var="item" value="#{RowSeparator.ALL_ENUM_VALUES}" itemLabel="#{item.label}" itemValue="#{item}"/>
-                            	<p:ajax listener="#{fileDataPanel.handleUploadOptionChange}" update="table"/>
+                            	<p:ajax listener="#{uploadOptionsListener.handleUploadOptionChange}" update="table"/>
                             </p:selectOneMenu>
                         </div>
                         <div class="p-field">
@@ -62,7 +62,7 @@
                             <p:selectOneMenu id="column-delimiter" value="#{fileDataPanel.uploadOptions.stringDelimiter}" disabled="#{fileDataPanel.noFileLoaded}"
                             	styleClass="upload-option">
                             	<f:selectItems var="item" value="#{StringDelimiter.ALL_ENUM_VALUES}" itemLabel="#{item.label}" itemValue="#{item}"/>
-                            	<p:ajax listener="#{fileDataPanel.handleUploadOptionChange}" update="table"/>
+                            	<p:ajax listener="#{uploadOptionsListener.handleUploadOptionChange}" update="table"/>
                             </p:selectOneMenu>
                         </div>
                         <div class="p-field">
@@ -70,13 +70,13 @@
                             <p:selectOneMenu id="encoding" value="#{fileDataPanel.uploadOptions.charset}" converter="com.exasol.csv.view.CharsetConverter" disabled="#{fileDataPanel.noFileLoaded}"
                             	styleClass="upload-option">
                             	<f:selectItems var="item" value="#{fileDataPanel.uploadOptions.availableCharsets()}"/>
-                            	<p:ajax listener="#{fileDataPanel.handleUploadOptionChange}" update="table"/>
+                            	<p:ajax listener="#{uploadOptionsListener.handleUploadOptionChange}" update="table"/>
                             </p:selectOneMenu>
                         </div>
                         <div class="p-field">
                             <p:selectBooleanCheckbox value="#{fileDataPanel.uploadOptions.parseColumnHeadersFromFirstRow}" itemLabel="Parse column headers from first row" 
                             	disabled="#{fileDataPanel.noFileLoaded}" styleClass="upload-option">
-                            	<p:ajax listener="#{fileDataPanel.handleUploadOptionChange}" update="table"/>
+                            	<p:ajax listener="#{uploadOptionsListener.handleUploadOptionChange}" update="table"/>
                            	</p:selectBooleanCheckbox>
                         </div>
                     </div>
