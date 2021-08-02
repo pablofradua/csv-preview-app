@@ -17,14 +17,14 @@ public class UploadOptions implements Serializable {
 
 	private ColumnSeparator columnSeparator;
 	private RowSeparator rowSeparator;
-	private StringDelimiter stringDelimeter;
+	private StringDelimiter stringDelimiter;
 	private Charset charset;
 	private HeaderOrigin headerOrigin;
 	
 	public UploadOptions() {
 		this.columnSeparator = ColumnSeparator.COMMA;
 		this.rowSeparator = RowSeparator.LF;
-		this.stringDelimeter = StringDelimiter.DOUBLE_QUOTES;
+		this.stringDelimiter = StringDelimiter.DOUBLE_QUOTES;
 		this.charset = StandardCharsets.UTF_8;
 		this.headerOrigin = HeaderOrigin.FIRST_ROW;
 	}
