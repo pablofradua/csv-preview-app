@@ -20,7 +20,7 @@ import org.primefaces.model.file.UploadedFile;
 
 import com.exasol.csv.view.file.ColumnSeparator;
 import com.exasol.csv.view.file.HeaderOrigin;
-import com.exasol.csv.view.file.StringDelimeter;
+import com.exasol.csv.view.file.StringDelimiter;
 
 @ExtendWith(MockitoExtension.class)
 class FileConverterTest {
@@ -177,7 +177,7 @@ class FileConverterTest {
 	}
 
 	private void givenSingleQuotesAsStringDelimeter() {
-		this.uploadOptions.setStringDelimeter(StringDelimeter.SINGLE_QUOTES);
+		this.uploadOptions.setStringDelimeter(StringDelimiter.SINGLE_QUOTES);
 	}
 
 	@Test

@@ -22,7 +22,7 @@
                   allSuffix="ALL_ENUM_VALUES"/>
 	<p:importEnum type="com.exasol.csv.view.file.RowSeparator" var="RowSeparator"
                   allSuffix="ALL_ENUM_VALUES"/>
-	<p:importEnum type="com.exasol.csv.view.file.StringDelimeter" var="StringDelimeter"
+	<p:importEnum type="com.exasol.csv.view.file.StringDelimiter" var="StringDelimiter"
                   allSuffix="ALL_ENUM_VALUES"/>
                   
   	<h:form id="table-form" styleClass="full-height p-grid p-align-stretch vertical-container content" enctype="multipart/form-data">
@@ -59,9 +59,9 @@
                         </div>
                         <div class="p-field">
                             <label for="@next">Column Delimiter</label>
-                            <p:selectOneMenu id="column-delimeter" value="#{fileDataPanel.uploadOptions.stringDelimeter}" disabled="#{fileDataPanel.noFileLoaded}"
+                            <p:selectOneMenu id="column-delimiter" value="#{fileDataPanel.uploadOptions.stringDelimiter}" disabled="#{fileDataPanel.noFileLoaded}"
                             	styleClass="upload-option">
-                            	<f:selectItems var="item" value="#{StringDelimeter.ALL_ENUM_VALUES}" itemLabel="#{item.label}" itemValue="#{item}"/>
+                            	<f:selectItems var="item" value="#{StringDelimiter.ALL_ENUM_VALUES}" itemLabel="#{item.label}" itemValue="#{item}"/>
                             	<p:ajax listener="#{fileDataPanel.handleUploadOptionChange}" update="table"/>
                             </p:selectOneMenu>
                         </div>
