@@ -1,4 +1,4 @@
-package com.exasol.csv.view;
+package com.exasol.csv.service;
 
 import java.util.ArrayList;
 import java.util.List;

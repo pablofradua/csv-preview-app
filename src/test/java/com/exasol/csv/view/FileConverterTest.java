@@ -18,6 +18,8 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.primefaces.model.file.UploadedFile;
 
+import com.exasol.csv.service.CSVFile;
+import com.exasol.csv.service.FileConverter;
 import com.exasol.csv.view.file.ColumnSeparator;
 import com.exasol.csv.view.file.HeaderOrigin;
 import com.exasol.csv.view.file.StringDelimiter;

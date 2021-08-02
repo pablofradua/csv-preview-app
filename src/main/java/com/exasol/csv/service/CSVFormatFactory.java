@@ -1,7 +1,8 @@
-package com.exasol.csv.view;
+package com.exasol.csv.service;
 
 import org.apache.commons.csv.CSVFormat;
 
+import com.exasol.csv.view.UploadOptions;
 import com.exasol.csv.view.file.HeaderOrigin;
 
 class CSVFormatFactory {
