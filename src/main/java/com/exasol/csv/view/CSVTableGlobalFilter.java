@@ -20,13 +20,12 @@ public class CSVTableGlobalFilter {
 		this.fileDataPanel = fileDataPanel;
 	}
 
-	public boolean filterFile(Object value, Object filter, Locale locale) {
+	public boolean filterFile(List<String> rowValues, Object filter, Locale locale) {
 		String filterText = (filter == null) ? null : filter.toString().trim().toLowerCase();
 		if (LangUtils.isValueBlank(filterText)) {
 			return true;
 		}
 
-		List<String> rowValues = (List<String>) value;
 		return rowValues.stream().anyMatch(rowValue -> rowValue.toLowerCase().contains(filterText));
 	}
 }
