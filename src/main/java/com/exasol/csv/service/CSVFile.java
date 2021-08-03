@@ -11,6 +11,6 @@ import lombok.Value;
 @Builder
 public class CSVFile implements Serializable {
 	@NonNull String filename;
-    @NonNull List<String> columnNames;
+    @NonNull List<CSVFileColumn> columns;
     @NonNull List<List<String>> rows;
 }

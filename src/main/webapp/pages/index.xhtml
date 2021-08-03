@@ -120,9 +120,9 @@
                     <f:facet name="header">
 	                    <p:inputText id="globalFilter" onkeyup="PF('resultsTable').filter()"/>
                     </f:facet>
-					<p:columns value="#{fileDataPanel.csvFile.columnNames}"  var="columnName" columnIndexVar="colIndex" sortBy="#{fileRow[colIndex]}" filterable="true">  
-					  <f:facet name="header">#{columnName}</f:facet>
-					  <h:outputText value="#{fileRow[colIndex]}" />
+					<p:columns value="#{fileDataPanel.csvFile.columns}"  var="column" sortBy="#{fileRow[column.displayPriority]}" filterable="true">  
+					  <f:facet name="header">#{column.columnName}</f:facet>
+					  <h:outputText value="#{fileRow[column.displayPriority]}" />
 					</p:columns>
                 </p:dataTable>
         </div>

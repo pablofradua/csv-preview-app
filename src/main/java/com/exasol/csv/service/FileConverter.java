@@ -25,10 +25,10 @@ public class FileConverter {
 			CSVParser parser = CSV_FORMAT_FACTORY.getInstance(uploadOptions).parse(fileReader);
 			HeaderOrigin headerOrigin = uploadOptions.getHeaderOrigin();
 			List<List<String>> rows =  parser.getRecords().stream().map(MAPPER::toList).collect(toList());
-			List<String> columnNames = headerOrigin == FIRST_ROW ? parser.getHeaderNames().stream().sorted(String::compareTo).collect(toList()) : generateColumnsNames(rows);
+			List<CSVFileColumn> columns = headerOrigin == FIRST_ROW ? getColumnsFromFile(parser) : generateColumns(rows);
 			return CSVFile.builder()
 					.filename(filename)
-					.columnNames(columnNames)
+					.columns(columns)
 					.rows(rows)
 					.build();
 		} catch (IOException e) {
@@ -36,8 +36,13 @@ public class FileConverter {
 		}
 	}
 
-	private List<String> generateColumnsNames(List<List<String>> rows) {
-		return IntStream.rangeClosed(1, rows.get(0).size()).mapToObj(i->"Column "+i).collect(toList());
+	private List<CSVFileColumn> getColumnsFromFile(CSVParser parser) {
+		List<String> columnNames = parser.getHeaderNames();
+		return columnNames.stream().sorted(String::compareTo).map(x->new CSVFileColumn(x, columnNames.indexOf(x))).collect(toList());
+	}
+
+	private List<CSVFileColumn> generateColumns(List<List<String>> rows) {
+		return IntStream.rangeClosed(1, rows.get(0).size()).mapToObj(i->new CSVFileColumn("Column "+i, i)).collect(toList());
 	}
 
 }
