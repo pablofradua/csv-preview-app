@@ -10,7 +10,7 @@ import lombok.Value;
 @Value
 @Builder
 public class CSVFile implements Serializable {
-	@NonNull String filename;
-    @NonNull List<CSVFileColumn> columns;
-    @NonNull List<List<String>> rows;
+	@NonNull private String filename;
+    @NonNull private List<CSVFileColumn> columns;
+    @NonNull private List<List<String>> rows;
 }

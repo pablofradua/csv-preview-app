@@ -36,7 +36,8 @@ public class FileDataPanel implements Serializable{
 	private ByteArrayOutputStream fileContentsBackup;
 	
 	@Getter
-	@Setter List<List<String>> filteredRows;
+	@Setter 
+	private List<List<String>> filteredRows;
 	
 	public FileDataPanel() {
 		this.uploadOptions = new UploadOptions();
