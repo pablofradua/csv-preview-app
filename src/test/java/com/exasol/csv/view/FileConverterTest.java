@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
@@ -20,6 +21,7 @@ import org.primefaces.model.file.UploadedFile;
 
 import com.exasol.csv.service.CSVFile;
 import com.exasol.csv.service.CSVFileColumn;
+import com.exasol.csv.service.CouldNotReadFileException;
 import com.exasol.csv.service.FileConverter;
 import com.exasol.csv.view.upload_options.ColumnSeparator;
 import com.exasol.csv.view.upload_options.HeaderOrigin;
@@ -38,7 +40,7 @@ class FileConverterTest {
 	private static final String ANSI_FILE = "basic_file_ansi.csv";
 	private static final String NO_HEADER_FILE = "no_header_file.csv";
 
-	private static final List<String> EXPECTED_COLUMN_NAMES = List.of("seq","first","last","age","gender","birthday");
+	private static final List<String> EXPECTED_COLUMN_NAMES = List.of("age","birthday","first","gender","last","seq");
 	private static final List<String> EXPECTED_GENERATED_COLUMN_NAMES = List.of("Column 1","Column 2","Column 3","Column 4","Column 5","Column 6");
 	private static final List<List<String>> EXPECTED_VALUES = getExpectedValues();
 	private static final List<List<String>> EXPECTED_ANSI_VALUES = getExpectedAnsiValues();
@@ -67,6 +69,11 @@ class FileConverterTest {
 		var expectedValues = new ArrayList<List<String>>();
 		expectedValues.add(List.of("1","Beulah","Ingram ñ","29","Female","12/30/1965"));
 		return expectedValues;
+	}
+	
+	@BeforeEach
+	void initUploadOptions() {
+		this.uploadOptions = new UploadOptions();
 	}
 	
 	@AfterEach
@@ -100,8 +107,7 @@ class FileConverterTest {
 		try {
 			this.csvFile = this.fileConverter.convert(this.uploadedFile.getFileName(), this.uploadedFile.getInputStream(), this.uploadOptions);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new CouldNotReadFileException(e);
 		}
 	}
 

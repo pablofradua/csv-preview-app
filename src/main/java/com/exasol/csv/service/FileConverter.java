@@ -42,7 +42,7 @@ public class FileConverter {
 	}
 
 	private List<CSVFileColumn> generateColumns(List<List<String>> rows) {
-		return IntStream.rangeClosed(1, rows.get(0).size()).mapToObj(i->new CSVFileColumn("Column "+i, i)).collect(toList());
+		return IntStream.rangeClosed(1, rows.get(0).size()).mapToObj(i->new CSVFileColumn("Column "+i, i-1)).collect(toList());
 	}
 
 }
