@@ -15,11 +15,22 @@ import org.apache.commons.csv.CSVParser;
 import com.exasol.csv.view.upload_options.HeaderOrigin;
 import com.exasol.csv.view.upload_options.UploadOptions;
 
+/**
+ * @author pfradua
+ *
+ */
 public class FileConverter {
 
 	private static final CSVRecordMapper MAPPER = new CSVRecordMapper();
 	private static final CSVFormatFactory CSV_FORMAT_FACTORY = new CSVFormatFactory();
 
+	/**
+	 * Reads an InputStream with a CSV file and parses it to a {@link CSVFile}, taken into account the defined {@link UploadOptions}
+	 * @param filename 
+	 * @param fileContents 
+	 * @param uploadOptions
+	 * @return
+	 */
 	public CSVFile convert(String filename, InputStream fileContents, UploadOptions uploadOptions) {
 		try (Reader fileReader = new InputStreamReader(fileContents, uploadOptions.getCharset())) {
 			CSVParser parser = CSV_FORMAT_FACTORY.getInstance(uploadOptions).parse(fileReader);

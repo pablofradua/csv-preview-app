@@ -8,10 +8,22 @@ import javax.inject.Named;
 
 import org.primefaces.util.LangUtils;
 
+/**
+ * Contains the logic for filtering the datatable by any column.
+ * @author pfradua
+ *
+ */
 @Named("csvTableGlobalFilter")
 @RequestScoped
 public class CSVTableGlobalFilter {
 
+	/**
+	 * Filters the file row values.
+	 * @param rowValues Datatable rows
+	 * @param filter String containing the search filter
+	 * @param locale user locale
+	 * @return filtered results
+	 */
 	public boolean filterFile(List<String> rowValues, Object filter, Locale locale) {
 		String filterText = (filter == null) ? null : filter.toString().trim().toLowerCase();
 		if (LangUtils.isValueBlank(filterText)) {

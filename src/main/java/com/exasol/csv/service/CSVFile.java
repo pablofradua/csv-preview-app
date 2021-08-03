@@ -7,6 +7,11 @@ import lombok.Builder;
 import lombok.NonNull;
 import lombok.Value;
 
+/**
+ * Represents a CSV datatable file
+ * @author pfradua
+ *
+ */
 @Value
 @Builder
 public class CSVFile implements Serializable {

@@ -7,6 +7,11 @@ import java.util.Collection;
 
 import lombok.Data;
 
+/**
+ * Contains the selected options for reading CSV files.
+ * @author pfradua
+ *
+ */
 @Data
 public class UploadOptions implements Serializable {
 

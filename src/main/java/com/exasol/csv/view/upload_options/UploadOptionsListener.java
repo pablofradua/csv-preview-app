@@ -15,6 +15,11 @@ import com.exasol.csv.service.CouldNotReadFileException;
 import com.exasol.csv.service.FileConverter;
 import com.exasol.csv.view.FileDataPanel;
 
+/**
+ * Listener that reacts to changes in the file upload configuration, refreshing the datatable according to them.
+ * @author pfradua
+ *
+ */
 @Named
 @RequestScoped
 public class UploadOptionsListener {

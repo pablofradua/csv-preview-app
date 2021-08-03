@@ -16,6 +16,11 @@ import com.exasol.csv.view.upload_options.UploadOptions;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * Backing bean for the index.xhtml page, mainly a data class.
+ * @author pfradua
+ *
+ */
 @ViewScoped
 @Named
 public class FileDataPanel implements Serializable{

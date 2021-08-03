@@ -17,6 +17,11 @@ import com.exasol.csv.service.CouldNotCloneFileContentsException;
 import com.exasol.csv.service.CouldNotReadFileException;
 import com.exasol.csv.service.FileConverter;
 
+/**
+ * Listener that reacts to the file upload action, reading and parsing the CSV file
+ * @author pfradua
+ *
+ */
 @Named
 @RequestScoped
 public class FileUploadListener {

@@ -7,6 +7,11 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
+/**
+ * Converts from {@link Charset} to {@link String}, and vice versa
+ * @author pfradua
+ *
+ */
 @FacesConverter("com.exasol.csv.view.CharsetConverter")
 public class CharsetConverter implements Converter<Charset> {
 
