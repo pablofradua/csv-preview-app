@@ -22,8 +22,8 @@ import lombok.Setter;
  *
  */
 @ViewScoped
-@Named
-public class FileDataPanel implements Serializable{
+@Named("csvPreview")
+public class CSVPreview implements Serializable{
 	
 	@Getter
 	@Setter
@@ -44,7 +44,7 @@ public class FileDataPanel implements Serializable{
 	@Setter 
 	private List<List<String>> filteredRows;
 	
-	public FileDataPanel() {
+	public CSVPreview() {
 		this.uploadOptions = new UploadOptions();
 		this.filteredRows = new ArrayList<>();
 	}

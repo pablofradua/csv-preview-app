@@ -42,12 +42,12 @@
                             update="results-section @(.upload-option) file-upload-options"/>
                         </div>
                         <div jsf:id="file-upload-options">
-                        	<div jsf:rendered="#{fileDataPanel.fileLoaded}">
+                        	<div jsf:rendered="#{csvPreview.fileLoaded}">
                         		<hr/>
-		                        <h4>Step 2: Configure display of #{fileDataPanel.csvFile.filename}</h4>
+		                        <h4>Step 2: Configure display of #{csvPreview.csvFile.filename}</h4>
 		                        <div class="p-field p-grid">
 		                            <label for="@next" class="p-col">Column Separator</label>
-		                            <p:selectOneMenu id="column-separator" value="#{fileDataPanel.uploadOptions.columnSeparator}" disabled="#{fileDataPanel.noFileLoaded}"
+		                            <p:selectOneMenu id="column-separator" value="#{csvPreview.uploadOptions.columnSeparator}" disabled="#{csvPreview.noFileLoaded}"
 		                            	styleClass="upload-option p-col-fixed" style="width:200px">
 		                            	<f:selectItems var="item" value="#{ColumnSeparator.ALL_ENUM_VALUES}" itemLabel="#{item.label}" itemValue="#{item}"/>
 		                            	<p:ajax listener="#{uploadOptionsListener.handleUploadOptionChange}" update="table"/>
@@ -55,7 +55,7 @@
 		                        </div>
 		                        <div class="p-field p-grid">
 		                            <label for="@next" class="p-col">Row Separator</label>
-		                            <p:selectOneMenu id="row-separator" value="#{fileDataPanel.uploadOptions.rowSeparator}" disabled="#{fileDataPanel.noFileLoaded}"
+		                            <p:selectOneMenu id="row-separator" value="#{csvPreview.uploadOptions.rowSeparator}" disabled="#{csvPreview.noFileLoaded}"
 		                            	styleClass="upload-option p-col-fixed" style="width:200px">
 		                            	<f:selectItems var="item" value="#{RowSeparator.ALL_ENUM_VALUES}" itemLabel="#{item.label}" itemValue="#{item}"/>
 		                            	<p:ajax listener="#{uploadOptionsListener.handleUploadOptionChange}" update="table"/>
@@ -63,7 +63,7 @@
 		                        </div>
 		                        <div class="p-field p-grid">
 		                            <label for="@next" class="p-col">Column Delimiter</label>
-		                            <p:selectOneMenu id="column-delimiter" value="#{fileDataPanel.uploadOptions.stringDelimiter}" disabled="#{fileDataPanel.noFileLoaded}"
+		                            <p:selectOneMenu id="column-delimiter" value="#{csvPreview.uploadOptions.stringDelimiter}" disabled="#{csvPreview.noFileLoaded}"
 		                            	styleClass="upload-option p-col-fixed" style="width:200px">
 		                            	<f:selectItems var="item" value="#{StringDelimiter.ALL_ENUM_VALUES}" itemLabel="#{item.label}" itemValue="#{item}"/>
 		                            	<p:ajax listener="#{uploadOptionsListener.handleUploadOptionChange}" update="table"/>
@@ -71,15 +71,15 @@
 		                        </div>
 		                        <div class="p-field p-grid">
 		                            <label for="@next" class="p-col">Encoding</label>
-		                            <p:selectOneMenu id="encoding" value="#{fileDataPanel.uploadOptions.charset}" converter="com.exasol.csv.view.CharsetConverter" disabled="#{fileDataPanel.noFileLoaded}"
+		                            <p:selectOneMenu id="encoding" value="#{csvPreview.uploadOptions.charset}" converter="com.exasol.csv.view.CharsetConverter" disabled="#{csvPreview.noFileLoaded}"
 		                            	styleClass="upload-option p-col-fixed" style="width:200px">
-		                            	<f:selectItems var="item" value="#{fileDataPanel.uploadOptions.availableCharsets()}"/>
+		                            	<f:selectItems var="item" value="#{csvPreview.uploadOptions.availableCharsets()}"/>
 		                            	<p:ajax listener="#{uploadOptionsListener.handleUploadOptionChange}" update="table"/>
 		                            </p:selectOneMenu>
 		                        </div>
 		                        <div class="p-field">
-		                            <p:selectBooleanCheckbox value="#{fileDataPanel.uploadOptions.parseColumnHeadersFromFirstRow}" itemLabel="Parse column headers from first row" 
-		                            	disabled="#{fileDataPanel.noFileLoaded}" styleClass="upload-option">
+		                            <p:selectBooleanCheckbox value="#{csvPreview.uploadOptions.parseColumnHeadersFromFirstRow}" itemLabel="Parse column headers from first row" 
+		                            	disabled="#{csvPreview.noFileLoaded}" styleClass="upload-option">
 		                            	<p:ajax listener="#{uploadOptionsListener.handleUploadOptionChange}" update="table"/>
 		                           	</p:selectBooleanCheckbox>
 		                        </div>
@@ -92,27 +92,27 @@
         <div jsf:id="results-section" class="p-col full-height">
         		<div id="results-header" class="p-d-flex p-jc-between">
         			<div id="results-filename" class="ui-widget">
-		            	<h:outputFormat value="Displaying file: {0}" rendered="#{fileDataPanel.fileLoaded}" styleClass="stick-to-bottom">
-		            		<f:param value="#{fileDataPanel.csvFile.filename}"/>
+		            	<h:outputFormat value="Displaying file: {0}" rendered="#{csvPreview.fileLoaded}" styleClass="stick-to-bottom">
+		            		<f:param value="#{csvPreview.csvFile.filename}"/>
 		            	</h:outputFormat>
-		            	<h:outputText value="No file selected" rendered="#{fileDataPanel.noFileLoaded}" styleClass="stick-to-bottom"/>
+		            	<h:outputText value="No file selected" rendered="#{csvPreview.noFileLoaded}" styleClass="stick-to-bottom"/>
 	            	</div>
         			<div id="search-section">
         				<div class="ui-inputgroup">
 	    					<span class="ui-inputgroup-addon"><i class="pi pi-search"></i></span>
-		                	<p:inputText id="fileSearchFilter" onkeyup="filterResults()" placeholder="Search file" disabled="#{fileDataPanel.noFileLoaded}"/>
+		                	<p:inputText id="fileSearchFilter" onkeyup="filterResults()" placeholder="Search file" disabled="#{csvPreview.noFileLoaded}"/>
 	                	</div>
                 	</div>
                 </div>
                 <p:dataTable id="table"
                              var="fileRow"
                              widgetVar="resultsTable"
-                             value="#{fileDataPanel.csvFile.rows}"
-                             filteredValue="#{fileDataPanel.filteredRows}"
+                             value="#{csvPreview.csvFile.rows}"
+                             filteredValue="#{csvPreview.filteredRows}"
                              scrollable="true"
                              scrollHeight="100%"
                              styleClass="csv-preview-table"
-                             rendered="#{fileDataPanel.fileLoaded}"
+                             rendered="#{csvPreview.fileLoaded}"
                              virtualScroll="true"
                              scrollRows="50"
                              globalFilterFunction="#{csvTableGlobalFilter.filterFile}"
@@ -120,7 +120,7 @@
                     <f:facet name="header">
 	                    <p:inputText id="globalFilter" onkeyup="PF('resultsTable').filter()"/>
                     </f:facet>
-					<p:columns value="#{fileDataPanel.csvFile.columns}"  var="column" sortBy="#{fileRow[column.displayPriority]}" filterable="true">  
+					<p:columns value="#{csvPreview.csvFile.columns}"  var="column" sortBy="#{fileRow[column.displayPriority]}" filterable="true">  
 					  <f:facet name="header">#{column.columnName}</f:facet>
 					  <h:outputText value="#{fileRow[column.displayPriority]}" />
 					</p:columns>

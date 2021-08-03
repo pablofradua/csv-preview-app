@@ -13,7 +13,7 @@ import javax.inject.Named;
 import com.exasol.csv.service.CSVFile;
 import com.exasol.csv.service.CouldNotReadFileException;
 import com.exasol.csv.service.FileConverter;
-import com.exasol.csv.view.FileDataPanel;
+import com.exasol.csv.view.CSVPreview;
 
 /**
  * Listener that reacts to changes in the file upload configuration, refreshing the datatable according to them.
@@ -24,7 +24,7 @@ import com.exasol.csv.view.FileDataPanel;
 @RequestScoped
 public class UploadOptionsListener {
 
-	private FileDataPanel fileDataPanel;
+	private CSVPreview csvPreview;
 	private FileConverter fileConverter;
 	
 	protected UploadOptionsListener() {
@@ -32,15 +32,15 @@ public class UploadOptionsListener {
 	}
 	
 	@Inject
-	public UploadOptionsListener(FileDataPanel fileDataPanel) {
-		this.fileDataPanel = fileDataPanel;
+	public UploadOptionsListener(CSVPreview csvPreview) {
+		this.csvPreview = csvPreview;
 		this.fileConverter = new FileConverter();
 	}
 	
 	public void handleUploadOptionChange() {
-		try(InputStream fileContents = new ByteArrayInputStream(this.fileDataPanel.getFileContentsBackup().toByteArray())){
-			CSVFile csvFile = this.fileConverter.convert(this.fileDataPanel.getCsvFile().getFilename(), fileContents, this.fileDataPanel.getUploadOptions());
-			this.fileDataPanel.setCsvFile(csvFile);
+		try(InputStream fileContents = new ByteArrayInputStream(this.csvPreview.getFileContentsBackup().toByteArray())){
+			CSVFile csvFile = this.fileConverter.convert(this.csvPreview.getCsvFile().getFilename(), fileContents, this.csvPreview.getUploadOptions());
+			this.csvPreview.setCsvFile(csvFile);
 		} catch (IOException e) {
 			addErrorMessage("Could not read the file");
 		} catch (CouldNotReadFileException e) {

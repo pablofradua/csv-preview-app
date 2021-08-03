@@ -26,21 +26,21 @@ import com.exasol.csv.service.FileConverter;
 @RequestScoped
 public class FileUploadListener {
 
-	private final FileDataPanel fileDataPanel;
+	private final CSVPreview csvPreview;
 	private final FileConverter fileConverter;
 	
 	@Inject
-	public FileUploadListener(FileDataPanel fileDataPanel) {
-		this.fileDataPanel = fileDataPanel;
+	public FileUploadListener(CSVPreview csvPreview) {
+		this.csvPreview = csvPreview;
 		this.fileConverter = new FileConverter();
 	}
 	
 	public void handleFileUpload(FileUploadEvent fileUploadEvent) {
 		try{
 			ByteArrayOutputStream fileContentsBackup = this.backupFileContents(fileUploadEvent.getFile().getInputStream());
-			this.fileDataPanel.setFileContentsBackup(fileContentsBackup);
-			CSVFile csvFile = this.fileConverter.convert(fileUploadEvent.getFile().getFileName(), fileUploadEvent.getFile().getInputStream(), this.fileDataPanel.getUploadOptions());
-			this.fileDataPanel.setCsvFile(csvFile);
+			this.csvPreview.setFileContentsBackup(fileContentsBackup);
+			CSVFile csvFile = this.fileConverter.convert(fileUploadEvent.getFile().getFileName(), fileUploadEvent.getFile().getInputStream(), this.csvPreview.getUploadOptions());
+			this.csvPreview.setCsvFile(csvFile);
 		} catch (IOException e) {
 			addErrorMessage("Could not read the file");
 		} catch (CouldNotReadFileException e) {
