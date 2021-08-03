@@ -51,3 +51,7 @@ div#results-filename{
 .ui-fileupload-content {
     display: none !important;
 }
+
+.upload-option {
+	width: 200px !important;
+}

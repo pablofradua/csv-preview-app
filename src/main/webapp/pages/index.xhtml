@@ -39,7 +39,7 @@
                         <h4>Step 1: Upload a file</h4>
                         <div class="p-field">
                             <p:fileUpload accept="text/csv" allowTypes="/(\.|\/)(csv)$/" label="Select file" listener="#{fileUploadListener.handleFileUpload}"
-                            update="results-section @(.upload-option) file-upload-options"/>
+                            update="results-section file-upload-options"/>
                         </div>
                         <div jsf:id="file-upload-options">
                         	<div jsf:rendered="#{csvPreview.fileLoaded}">
@@ -47,39 +47,39 @@
 		                        <h4>Step 2: Configure display of #{csvPreview.csvFile.filename}</h4>
 		                        <div class="p-field p-grid">
 		                            <label for="@next" class="p-col">Column Separator</label>
-		                            <p:selectOneMenu id="column-separator" value="#{csvPreview.uploadOptions.columnSeparator}" disabled="#{csvPreview.noFileLoaded}"
-		                            	styleClass="upload-option p-col-fixed" style="width:200px">
+		                            <p:selectOneMenu id="column-separator" value="#{csvPreview.uploadOptions.columnSeparator}" 
+		                            	styleClass="upload-option p-col-fixed">
 		                            	<f:selectItems var="item" value="#{ColumnSeparator.ALL_ENUM_VALUES}" itemLabel="#{item.label}" itemValue="#{item}"/>
 		                            	<p:ajax listener="#{uploadOptionsListener.handleUploadOptionChange}" update="table"/>
 		                            </p:selectOneMenu>
 		                        </div>
 		                        <div class="p-field p-grid">
 		                            <label for="@next" class="p-col">Row Separator</label>
-		                            <p:selectOneMenu id="row-separator" value="#{csvPreview.uploadOptions.rowSeparator}" disabled="#{csvPreview.noFileLoaded}"
-		                            	styleClass="upload-option p-col-fixed" style="width:200px">
+		                            <p:selectOneMenu id="row-separator" value="#{csvPreview.uploadOptions.rowSeparator}"
+		                            	styleClass="upload-option p-col-fixed">
 		                            	<f:selectItems var="item" value="#{RowSeparator.ALL_ENUM_VALUES}" itemLabel="#{item.label}" itemValue="#{item}"/>
 		                            	<p:ajax listener="#{uploadOptionsListener.handleUploadOptionChange}" update="table"/>
 		                            </p:selectOneMenu>
 		                        </div>
 		                        <div class="p-field p-grid">
 		                            <label for="@next" class="p-col">Column Delimiter</label>
-		                            <p:selectOneMenu id="column-delimiter" value="#{csvPreview.uploadOptions.stringDelimiter}" disabled="#{csvPreview.noFileLoaded}"
-		                            	styleClass="upload-option p-col-fixed" style="width:200px">
+		                            <p:selectOneMenu id="column-delimiter" value="#{csvPreview.uploadOptions.stringDelimiter}"
+		                            	styleClass="upload-option p-col-fixed">
 		                            	<f:selectItems var="item" value="#{StringDelimiter.ALL_ENUM_VALUES}" itemLabel="#{item.label}" itemValue="#{item}"/>
 		                            	<p:ajax listener="#{uploadOptionsListener.handleUploadOptionChange}" update="table"/>
 		                            </p:selectOneMenu>
 		                        </div>
 		                        <div class="p-field p-grid">
 		                            <label for="@next" class="p-col">Encoding</label>
-		                            <p:selectOneMenu id="encoding" value="#{csvPreview.uploadOptions.charset}" converter="com.exasol.csv.view.CharsetConverter" disabled="#{csvPreview.noFileLoaded}"
-		                            	styleClass="upload-option p-col-fixed" style="width:200px">
+		                            <p:selectOneMenu id="encoding" value="#{csvPreview.uploadOptions.charset}" converter="com.exasol.csv.view.CharsetConverter"
+		                            	styleClass="upload-option p-col-fixed">
 		                            	<f:selectItems var="item" value="#{csvPreview.uploadOptions.availableCharsets()}"/>
 		                            	<p:ajax listener="#{uploadOptionsListener.handleUploadOptionChange}" update="table"/>
 		                            </p:selectOneMenu>
 		                        </div>
 		                        <div class="p-field">
-		                            <p:selectBooleanCheckbox value="#{csvPreview.uploadOptions.parseColumnHeadersFromFirstRow}" itemLabel="Parse column headers from first row" 
-		                            	disabled="#{csvPreview.noFileLoaded}" styleClass="upload-option">
+		                            <p:selectBooleanCheckbox value="#{csvPreview.uploadOptions.parseColumnHeadersFromFirstRow}" 
+		                            	itemLabel="Parse column headers from first row">
 		                            	<p:ajax listener="#{uploadOptionsListener.handleUploadOptionChange}" update="table"/>
 		                           	</p:selectBooleanCheckbox>
 		                        </div>
