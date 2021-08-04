@@ -28,13 +28,13 @@ public class UploadOptionsListener {
 	private FileConverter fileConverter;
 	
 	protected UploadOptionsListener() {
-		this.fileConverter = new FileConverter();
+		super();
 	}
 	
 	@Inject
-	public UploadOptionsListener(CSVPreview csvPreview) {
+	public UploadOptionsListener(CSVPreview csvPreview, FileConverter fileConverter) {
 		this.csvPreview = csvPreview;
-		this.fileConverter = new FileConverter();
+		this.fileConverter = fileConverter;
 	}
 	
 	public void handleUploadOptionChange() {

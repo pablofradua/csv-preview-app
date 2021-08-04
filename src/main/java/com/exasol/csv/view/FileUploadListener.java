@@ -30,9 +30,9 @@ public class FileUploadListener {
 	private final FileConverter fileConverter;
 	
 	@Inject
-	public FileUploadListener(CSVPreview csvPreview) {
+	public FileUploadListener(CSVPreview csvPreview, FileConverter fileConverter) {
 		this.csvPreview = csvPreview;
-		this.fileConverter = new FileConverter();
+		this.fileConverter = fileConverter;
 	}
 	
 	public void handleFileUpload(FileUploadEvent fileUploadEvent) {

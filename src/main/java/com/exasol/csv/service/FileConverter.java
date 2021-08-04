@@ -10,6 +10,9 @@ import java.io.Reader;
 import java.util.List;
 import java.util.stream.IntStream;
 
+import javax.enterprise.context.RequestScoped;
+import javax.inject.Named;
+
 import org.apache.commons.csv.CSVParser;
 
 import com.exasol.csv.view.upload_options.HeaderOrigin;
@@ -19,6 +22,8 @@ import com.exasol.csv.view.upload_options.UploadOptions;
  * @author pfradua
  *
  */
+@Named
+@RequestScoped
 public class FileConverter {
 
 	private static final CSVRecordMapper MAPPER = new CSVRecordMapper();
