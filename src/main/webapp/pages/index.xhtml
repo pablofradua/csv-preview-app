@@ -20,8 +20,6 @@
                   allSuffix="ALL_ENUM_VALUES"/>
 	<p:importEnum type="com.exasol.csv.view.upload_options.HeaderOrigin" var="HeaderOrigin"
                   allSuffix="ALL_ENUM_VALUES"/>
-	<p:importEnum type="com.exasol.csv.view.upload_options.RowSeparator" var="RowSeparator"
-                  allSuffix="ALL_ENUM_VALUES"/>
 	<p:importEnum type="com.exasol.csv.view.upload_options.StringDelimiter" var="StringDelimiter"
                   allSuffix="ALL_ENUM_VALUES"/>
                   
@@ -50,14 +48,6 @@
 		                            <p:selectOneMenu id="column-separator" value="#{csvPreview.uploadOptions.columnSeparator}" 
 		                            	styleClass="upload-option p-col-fixed">
 		                            	<f:selectItems var="item" value="#{ColumnSeparator.ALL_ENUM_VALUES}" itemLabel="#{item.label}" itemValue="#{item}"/>
-		                            	<p:ajax listener="#{uploadOptionsListener.handleUploadOptionChange}" update="table"/>
-		                            </p:selectOneMenu>
-		                        </div>
-		                        <div class="p-field p-grid">
-		                            <label for="@next" class="p-col">Row Separator</label>
-		                            <p:selectOneMenu id="row-separator" value="#{csvPreview.uploadOptions.rowSeparator}"
-		                            	styleClass="upload-option p-col-fixed">
-		                            	<f:selectItems var="item" value="#{RowSeparator.ALL_ENUM_VALUES}" itemLabel="#{item.label}" itemValue="#{item}"/>
 		                            	<p:ajax listener="#{uploadOptionsListener.handleUploadOptionChange}" update="table"/>
 		                            </p:selectOneMenu>
 		                        </div>
