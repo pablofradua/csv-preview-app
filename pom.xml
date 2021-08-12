@@ -57,6 +57,12 @@
 		  <version>${dep.mockito-junit-jupiter.version}</version>
 		  <scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>com.codeborne</groupId>
+			<artifactId>selenide</artifactId>
+			<version>${dep.selenide.version}</version>
+			<scope>test</scope>
+		</dependency>
     </dependencies>
 
     <dependencyManagement>
@@ -130,6 +136,7 @@
         <dep.assertj-core.version>3.18.1</dep.assertj-core.version>
         <dep.mockito-core.version>3.11.2</dep.mockito-core.version>
         <dep.mockito-junit-jupiter.version>3.11.2</dep.mockito-junit-jupiter.version>
+        <dep.selenide.version>5.23.2</dep.selenide.version>
     </properties>
 
 </project>
